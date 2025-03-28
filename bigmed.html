@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>BigBang Theory Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="bigmode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "bigmode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What does the Big Bang Theory explain?", 
+        choices: ["Earth", "Universe", "Stars", "Planets"], 
+        answer: "Universe", 
+        trivia: "The Big Bang Theory explains how the universe began and expanded from a single point."
+    },
+    { 
+        question: "Approximately how old is the universe?", 
+        choices: ["4.5B years", "10M years", "13.8B years", "100B years"], 
+        answer: "13.8B years", 
+        trivia: "Scientists estimate that the universe is about 13.8 billion years old."
+    },
+    { 
+        question: "What is the universe mostly made of?", 
+        choices: ["Atoms", "Stars", "Dark energy", "Planets"], 
+        answer: "Dark energy", 
+        trivia: "Dark energy makes up about 68% of the universe, causing its expansion."
+    },
+    { 
+        question: "What element was formed first after the Big Bang?", 
+        choices: ["Oxygen", "Carbon", "Hydrogen", "Iron"], 
+        answer: "Hydrogen", 
+        trivia: "Hydrogen was the first element created, later forming stars and galaxies."
+    },
+    { 
+        question: "What is leftover radiation from the Big Bang called?", 
+        choices: ["Infrared", "CMB", "Gamma rays", "X-rays"], 
+        answer: "CMB", 
+        trivia: "Cosmic Microwave Background (CMB) is the faint glow of radiation from the Big Bang."
+    },
+    { 
+        question: "What tool helps scientists study the universe’s expansion?", 
+        choices: ["Telescope", "Microscope", "Hubble", "Radar"], 
+        answer: "Hubble", 
+        trivia: "The Hubble Space Telescope helps observe distant galaxies moving away from us."
+    },
+    { 
+        question: "Who first proposed the Big Bang Theory?", 
+        choices: ["Newton", "Lemaître", "Einstein", "Hawking"], 
+        answer: "Lemaître", 
+        trivia: "Georges Lemaître, a Belgian priest and physicist, first suggested the theory."
+    },
+    { 
+        question: "What happens to galaxies as the universe expands?", 
+        choices: ["Shrink", "Collide", "Move apart", "Stop"], 
+        answer: "Move apart", 
+        trivia: "Galaxies move farther apart due to the universe's continuous expansion."
+    },
+    { 
+        question: "What is the name of the theory opposite to the Big Bang?", 
+        choices: ["Big Crunch", "Steady State", "Dark Matter", "Redshift"], 
+        answer: "Steady State", 
+        trivia: "The Steady State Theory argued that the universe always existed, but it was disproven."
+    },
+    { 
+        question: "What force caused the universe to expand?", 
+        choices: ["Gravity", "Electromagnetism", "Dark energy", "Friction"], 
+        answer: "Dark energy", 
+        trivia: "Dark energy is responsible for the universe’s accelerated expansion."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>

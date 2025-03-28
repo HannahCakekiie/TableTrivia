@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>The Periodic Table Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="periodicmed.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "periodicmed.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+            { question: "What is the atomic number of helium?", choices: ["1", "2", "4", "10"], answer: "2", trivia: "Helium has two protons, making its atomic number 2 — it’s also the second lightest element." },
+            { question: "What is the symbol for potassium?", choices: ["P", "K", "Po", "Pt"], answer: "K", trivia: "Potassium’s symbol 'K' comes from 'Kalium,' its Latin name." },
+            { question: "What type of elements are on the right side of the periodic table?", choices: ["Metals", "Metalloids", "Nonmetals", "Lanthanides"], answer: "Nonmetals", trivia: "Nonmetals like oxygen and nitrogen are found on the right side of the table." },
+            { question: "Which element is known as the 'King of Metals'?", choices: ["Iron", "Gold", "Copper", "Platinum"], answer: "Gold", trivia: "Gold has been called the 'King of Metals' due to its beauty, rarity, and value." },
+            { question: "Which halogen is a liquid at room temperature?", choices: ["Fluorine", "Chlorine", "Bromine", "Iodine"], answer: "Bromine", trivia: "Bromine is a reddish-brown liquid, the only non-metal liquid at room temperature!" },
+            { question: "Which element is named after a planet?", choices: ["Marsium", "Neptunium", "Earthium", "Jupiterium"], answer: "Neptunium", trivia: "Neptunium was named after Neptune, the planet, because it comes after Uranium (named after Uranus)." },
+            { question: "Which element is essential for bones?", choices: ["Iron", "Calcium", "Carbon", "Magnesium"], answer: "Calcium", trivia: "Calcium helps build strong bones and teeth — it’s also found in chalk!" },
+            { question: "Which metal is a liquid at room temperature?", choices: ["Aluminum", "Lead", "Mercury", "Tin"], answer: "Mercury", trivia: "Mercury is the only metal that’s a liquid at room temperature — it’s also called quicksilver." },
+            { question: "What gas is used in light bulbs?", choices: ["Oxygen", "Hydrogen", "Argon", "Helium"], answer: "Argon", trivia: "Argon is used in light bulbs to stop the filament from burning out too quickly!" },
+            { question: "Which element makes diamonds?", choices: ["Carbon", "Silicon", "Oxygen", "Nitrogen"], answer: "Carbon", trivia: "Diamonds are made from carbon atoms arranged in a special structure." },
+            // Add more questions for elements 1 to 118
+            { question: "What is the chemical symbol for Lithium?", choices: ["Li", "L", "Lu", "Lt"], answer: "Li", trivia: "Lithium is used in rechargeable batteries." },
+            { question: "What is the chemical symbol for Sodium?", choices: ["Na", "S", "So", "Sd"], answer: "Na", trivia: "Sodium is essential for nerve function." },
+            { question: "What is the chemical symbol for Magnesium?", choices: ["Mg", "M", "Ma", "Me"], answer: "Mg", trivia: "Magnesium is important for muscle function." },
+            { question: "What is the chemical symbol for Aluminum?", choices: ["Al", "Au", "Ag", "Am"], answer: "Al", trivia: "Aluminum is lightweight and resistant to corrosion." },
+            { question: "What is the chemical symbol for Silicon?", choices: ["Si", "S", "Sc", "Sl"], answer: "Si", trivia: "Silicon is used in computer chips." },
+            { question: "What is the chemical symbol for Phosphorus?", choices: ["P", "Po", "Ph", "Ps"], answer: "P", trivia: "Phosphorus is essential for DNA and RNA." },
+            { question: "What is the chemical symbol for Sulfur?", choices: ["S", "Su", "Sl", "So"], answer: "S", trivia: "Sulfur is used in fertilizers." },
+            { question: "What is the chemical symbol for Chlorine?", choices: ["Cl", "C", "Ch", "Cr"], answer: "Cl", trivia: "Chlorine is used in disinfectants." },
+            { question: "What is the chemical symbol for Argon?", choices: ["Ar", "Ag", "Au", "Al"], answer: "Ar", trivia: "Argon is used in light bulbs." },
+            { question: "What is the chemical symbol for Iron?", choices: ["Fe", "Ir", "I", "In"], answer: "Fe", trivia: "Iron is essential for blood production." }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+        function showResults() {
+            let scoreCategory = "";
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+        function goHome() {
+            location.reload();
+        }
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>

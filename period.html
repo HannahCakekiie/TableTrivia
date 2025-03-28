@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Trivia</title>
+  <style>
+    body {
+      background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      color: #fff;
+    }
+
+    /* Remove text-align:center so we can position elements more freely */
+    .game-container {
+      position: relative;
+    }
+
+    .Girl img {
+      position: absolute;
+      bottom: 50px;
+      left: -1.5%;
+      transform: translateX(-50%);
+      width: 300px;
+    }
+
+    /* Left-align the dialogue box */
+    .dialogue-box {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      padding: 15px;
+      width: 837px;
+      margin: 180px 0 20px 60px; /* top right bottom left */
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+
+    /* Left-align the buttons to match the dialogue box */
+    .buttons {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-left: 50px; /* aligns with the dialogue-box left margin */
+    }
+
+    .btn {
+      background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+      background: linear-gradient(145deg, #ff77ff, #9050d0);
+    }
+
+    a.btn {
+      text-decoration: none; /* Removes underline on links */
+    }
+
+    .dialogue-box {
+    /* Already in your code, just ensure these properties exist */
+    margin: 180px 0 20px 50px; /* top right bottom left */
+    text-align: left;          /* left-align text inside */
+    }
+
+    .buttons {
+    display: flex;
+    justify-content: flex-start; /* line up buttons to the left */
+    gap: 10px;
+    margin-left: 50px;           /* same left offset as .dialogue-box */
+    }
+
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div class="Girl">
+      <img src="Students.png" alt="Student">
+    </div>
+    <div class="dialogue-box">
+        Hey there, fellow schoolmates! Have you ever wondered what everything around us — even you — is made of? It all comes down to the Elements of the Periodic Table! From the air we breathe (Oxygen) to the metal in our phones (Aluminum), each element has a special role in building our world. Let’s dive into the table of elements and discover the tiny building blocks that make up everything in the universe. Ready to explore? Let’s go!
+    </div>
+    <div class="buttons">
+      <a href="tabtrivia.html" class="btn">🔙Back</a>
+      <a href="periodicmed.html" class="btn">💡Quiz</a>
+      <a href="perioditable.html" class="btn">Elements of the Periodic Table</a>
+      <a href="https://www.youtube.com/watch?v=hePb00CqvP0" class="btn">❓ What is Elements of the Periodic Table?</a>
+    </div>
+  </div>
+</body>
+</html>

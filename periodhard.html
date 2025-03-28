@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>The Periodic Table Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="periodicmed.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "periodicmed.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+            { question: "Which element has the highest melting point?", choices: ["Carbon", "Tungsten", "Platinum", "Titanium"], answer: "Tungsten", trivia: "Tungsten has an incredible melting point of 3422°C — that’s why it's used in light bulb filaments and rocket engines!" },
+            { question: "What is the rarest naturally occurring element on Earth?", choices: ["Francium", "Astatine", "Rhodium", "Plutonium"], answer: "Astatine", trivia: "Astatine is so rare that less than 1 gram exists naturally on Earth at any moment!" },
+            { question: "Which noble gas has the highest atomic mass?", choices: ["Neon", "Argon", "Krypton", "Radon"], answer: "Radon", trivia: "Radon is the heaviest noble gas — it’s radioactive and can seep into basements from the ground." },
+            { question: "What element is used in atomic clocks?", choices: ["Uranium", "Cesium", "Radium", "Platinum"], answer: "Cesium", trivia: "Cesium-133 is used in atomic clocks because it vibrates at a super steady frequency — keeping time to the nanosecond!" },
+            { question: "Which element is the best conductor of electricity?", choices: ["Copper", "Silver", "Gold", "Aluminum"], answer: "Silver", trivia: "Silver conducts electricity better than any other metal, but it’s too expensive for most wiring — that’s why copper is used instead!" },
+            { question: "Which element was first discovered through spectroscopy?", choices: ["Helium", "Neon", "Lithium", "Hydrogen"], answer: "Helium", trivia: "Helium was first spotted in the Sun's spectrum before it was found on Earth — its name comes from 'Helios,' the Greek god of the Sun!" },
+            { question: "What is the densest naturally occurring element?", choices: ["Lead", "Uranium", "Osmium", "Platinum"], answer: "Osmium", trivia: "Osmium is the densest element — even denser than lead or gold. One cubic meter weighs over 22,500 kilograms!" },
+            { question: "Which synthetic element was named after a famous scientist?", choices: ["Einsteinium", "Curium", "Fermium", "All of the above"], answer: "All of the above", trivia: "Einsteinium (Einstein), Curium (Marie Curie), and Fermium (Enrico Fermi) were all named to honor legendary scientists!" },
+            { question: "Which element is liquid just a few degrees above room temperature?", choices: ["Mercury", "Gallium", "Bromine", "Rubidium"], answer: "Gallium", trivia: "Gallium melts at 29.8°C — it’s so soft, you could hold it and watch it melt in your hand (though it’s not safe to touch for long!)." },
+            { question: "What is the last element on the current periodic table?", choices: ["Livermorium", "Oganesson", "Tennessine", "Flerovium"], answer: "Oganesson", trivia: "Oganesson (Og) is element 118, named after physicist Yuri Oganessian. It’s a noble gas, but scientists believe it behaves differently from others in its group." },
+            // Add more questions for elements 1 to 118
+            { question: "What is the chemical symbol for Francium?", choices: ["Fr", "F", "Fe", "Fl"], answer: "Fr", trivia: "Francium is highly radioactive and is the least stable of the first 101 elements." },
+            { question: "What is the chemical symbol for Radium?", choices: ["Ra", "Rn", "Re", "Rb"], answer: "Ra", trivia: "Radium is used in cancer treatment." },
+            { question: "What is the chemical symbol for Plutonium?", choices: ["Pu", "Pt", "Pa", "Pb"], answer: "Pu", trivia: "Plutonium is used in nuclear reactors and weapons." },
+            { question: "What is the chemical symbol for Californium?", choices: ["Cf", "C", "Ca", "Cl"], answer: "Cf", trivia: "Californium is used in neutron moisture gauges." },
+            { question: "What is the chemical symbol for Einsteinium?", choices: ["Es", "E", "In", "Ir"], answer: "Es", trivia: "Einsteinium is named after Albert Einstein." },
+            { question: "What is the chemical symbol for Fermium?", choices: ["Fm", "Fe", "F", "Fr"], answer: "Fm", trivia: "Fermium is used in research." },
+            { question: "What is the chemical symbol for Mendelevium?", choices: ["Md", "Me", "Mn", "Mg"], answer: "Md", trivia: "Mendelevium is named after Dmitri Mendeleev." },
+            { question: "What is the chemical symbol for Nobelium?", choices: ["No", "Ne", "Nb", "Nd"], answer: "No", trivia: "Nobelium is named after Alfred Nobel." },
+            { question: "What is the chemical symbol for Lawrencium?", choices: ["Lr", "La", "Li", "Lu"], answer: "Lr", trivia: "Lawrencium is named after Ernest O. Lawrence." },
+            { question: "What is the chemical symbol for Rutherfordium?", choices: ["Rf", "Ru", "Rb", "Re"], answer: "Rf", trivia: "Rutherfordium is named after Ernest Rutherford." },
+            { question: "What is the chemical symbol for Dubnium?", choices: ["Db", "D", "Du", "Db"], answer: "Db", trivia: "Dubnium is named after Dubna, Russia." },
+            { question: "What is the chemical symbol for Seaborgium?", choices: ["Sg", "Se", "Sb", "Sc"], answer: "Sg", trivia: "Seaborgium is named after Glenn T. Seaborg." },
+            { question: "What is the chemical symbol for Bohrium?", choices: ["Bh", "B", "Br", "Bi"], answer: "Bh", trivia: "Bohrium is named after Niels Bohr." },
+            { question: "What is the chemical symbol for Hassium?", choices: ["Hs", "H", "He", "Hg"], answer: "Hs", trivia: "Hassium is named after the German state of Hesse." },
+            { question: "What is the chemical symbol for Meitnerium?", choices: ["Mt", "Me", "Mn", "Mg"], answer: "Mt", trivia: "Meitnerium is named after Lise Meitner." },
+            { question: "What is the chemical symbol for Darmstadtium?", choices: ["Ds", "D", "Db", "Dr"], answer: "Ds", trivia: "Darmstadtium is named after the city of Darmstadt." },
+            { question: "What is the chemical symbol for Roentgenium?", choices: ["Rg", "Ro", "Re", "Rn"], answer: "Rg", trivia: "Roentgenium is named after Wilhelm Röntgen." },
+            { question: "What is the chemical symbol for Copernicium?", choices: ["Cn", "Co", "Cr", "Cu"], answer: "Cn", trivia: "Copernicium is named after Nicolaus Copernicus." },
+            { question: "What is the chemical symbol for Nihonium?", choices: ["Nh", "N", "Ni", "No"], answer: "Nh", trivia: "Nihonium is named after Japan." },
+            { question: "What is the chemical symbol for Flerovium?", choices: ["Fl", "F", "Fe", "Fr"], answer: "Fl", trivia: "Flerovium is named after Georgy Flerov." },
+            { question: "What is the chemical symbol for Moscovium?", choices: ["Mc", "Mo", "M", "Mg"], answer: "Mc", trivia: "Moscovium is named after Moscow." },
+            { question: "What is the chemical symbol for Livermorium?", choices: ["Lv", "Li", "L", "La"], answer: "Lv", trivia: "Livermorium is named after Lawrence Livermore National Laboratory." },
+            { question: "What is the chemical symbol for Tennessine?", choices: ["Ts", "Te", "T", "Ti"], answer: "Ts", trivia: "Tennessine is named after the state of Tennessee." },
+            { question: "What is the chemical symbol for Oganesson?", choices: ["Og", "O", "Os", "Og"], answer: "Og", trivia: "Oganesson is a synthetic element." }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+        function showResults() {
+            let scoreCategory = "";
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+        function goHome() {
+            location.reload();
+        }
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>

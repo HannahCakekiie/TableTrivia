@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('TABLETRIVIABG.webp') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .logo {
+            width: 5400px;
+            height: auto;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 30%;
+        }
+
+        .loading-container {
+            width: 100%;
+            position: absolute;
+            bottom: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .loading-bar {
+            width: 700px;
+            height: 20px;
+            border: 3px solid #A67C52;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #A45DE2, #2E1A47);
+            animation: load 3s linear forwards;
+        }
+
+        @keyframes load {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+    </style>
+</head>
+<body>
+    <img src="trivia.png"width=530px"><br><br><br>
+    <div class="loading-container" id="loadingScreen">
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("loadingScreen").classList;
+            setTimeout(() => {
+                window.location.href = "tabtrivia.html";
+            }, 1000);
+        }, 3000);
+    </script>
+</body>
+</html>

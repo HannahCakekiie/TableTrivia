@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>Astronomy Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="astromode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "astromode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What force keeps planets in orbit around the Sun?", 
+        choices: ["Electromagnetism", "Gravity", "Nuclear force", "Inertia"], 
+        answer: "Gravity", 
+        trivia: "Gravity pulls objects towards each other, and the Sun’s gravity keeps planets orbiting around it."
+    },
+    { 
+        question: "Which planet has the fastest rotation?", 
+        choices: ["Earth", "Mars", "Jupiter", "Saturn"], 
+        answer: "Jupiter", 
+        trivia: "Jupiter completes one rotation in about 10 hours — the fastest in our Solar System!"
+    },
+    { 
+        question: "What is a nebula?", 
+        choices: ["A type of galaxy", "A cloud of gas and dust", "A dying star", "A black hole"], 
+        answer: "A cloud of gas and dust", 
+        trivia: "Nebulas are vast clouds of gas and dust where new stars can form."
+    },
+    { 
+        question: "Which planet has the most moons?", 
+        choices: ["Earth", "Saturn", "Jupiter", "Uranus"], 
+        answer: "Saturn", 
+        trivia: "Saturn holds the record with 146 confirmed moons — more than any other planet."
+    },
+    { 
+        question: "What causes a lunar eclipse?", 
+        choices: ["Earth’s shadow blocks the Moon", "The Moon moves between Earth and the Sun", "The Moon disappears behind the Sun", "Earth blocks the Sun's light"], 
+        answer: "Earth’s shadow blocks the Moon", 
+        trivia: "A lunar eclipse happens when Earth moves between the Sun and the Moon, casting a shadow on the Moon."
+    },
+    { 
+        question: "What is a supernova?", 
+        choices: ["A new star forming", "A dying star exploding", "A black hole forming", "A comet hitting a star"], 
+        answer: "A dying star exploding", 
+        trivia: "A supernova is the massive explosion of a star at the end of its life cycle, releasing incredible energy."
+    },
+    { 
+        question: "Which planet has a giant storm called the 'Great Dark Spot'?", 
+        choices: ["Mars", "Neptune", "Jupiter", "Uranus"], 
+        answer: "Neptune", 
+        trivia: "Neptune’s 'Great Dark Spot' was a massive storm, similar to Jupiter’s Great Red Spot."
+    },
+    { 
+        question: "What is the main component of the Sun?", 
+        choices: ["Oxygen", "Carbon", "Hydrogen", "Helium"], 
+        answer: "Hydrogen", 
+        trivia: "The Sun is mostly made of hydrogen, which it converts into helium through nuclear fusion to produce energy."
+    },
+    { 
+        question: "Which type of galaxy is the Milky Way?", 
+        choices: ["Elliptical", "Irregular", "Spiral", "Barred spiral"], 
+        answer: "Barred spiral", 
+        trivia: "The Milky Way is a barred spiral galaxy with a central bar-shaped structure made of stars."
+    },
+    { 
+        question: "How long does it take for light from the Sun to reach Earth?", 
+        choices: ["1 second", "8 minutes", "12 hours", "1 day"], 
+        answer: "8 minutes", 
+        trivia: "Sunlight travels about 150 million kilometers to Earth in roughly 8 minutes and 20 seconds."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>

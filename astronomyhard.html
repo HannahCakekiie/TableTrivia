@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 170px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>Astronomy Quiz</h1>
+
+            <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="astromode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "astromode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What is the name of the hypothetical boundary surrounding a black hole beyond which nothing can escape?", 
+        choices: ["Singularity", "Event horizon", "Photon sphere", "Accretion disk"], 
+        answer: "Event horizon", 
+        trivia: "The event horizon is the 'point of no return' around a black hole — once crossed, not even light can escape."
+    },
+    { 
+        question: "What type of star remains after a supernova if the core's mass is between 1.4 and 3 times the Sun's mass?", 
+        choices: ["White dwarf", "Neutron star", "Black hole", "Red giant"], 
+        answer: "Neutron star", 
+        trivia: "A neutron star is incredibly dense, formed when a massive star collapses under its own gravity after a supernova."
+    },
+    { 
+        question: "What is the primary cause of a quasar's extreme luminosity?", 
+        choices: ["Supernova explosions", "Colliding galaxies", "Massive star formation", "Supermassive black holes"], 
+        answer: "Supermassive black holes", 
+        trivia: "Quasars are powered by supermassive black holes pulling in surrounding material, releasing immense energy."
+    },
+    { 
+        question: "What is the name of the largest known structure in the observable universe?", 
+        choices: ["The Local Group", "The Virgo Supercluster", "The Hercules-Corona Borealis Great Wall", "The Great Attractor"], 
+        answer: "The Hercules-Corona Borealis Great Wall", 
+        trivia: "This colossal galactic structure spans about 10 billion light-years, making it the largest known formation."
+    },
+    { 
+        question: "What is the primary evidence for the existence of dark matter?", 
+        choices: ["Gravitational lensing", "Cosmic background radiation", "Galaxy rotation curves", "Both A and C"], 
+        answer: "Both A and C", 
+        trivia: "Dark matter’s presence is inferred from gravitational lensing and the unexpected rotational speeds of galaxies."
+    },
+    { 
+        question: "Which element is created in the final stages of a massive star's life, leading to a supernova?", 
+        choices: ["Carbon", "Oxygen", "Iron", "Silicon"], 
+        answer: "Iron", 
+        trivia: "Iron builds up in the star’s core, but fusion can no longer release energy from iron, triggering a collapse and supernova."
+    },
+    { 
+        question: "What is the temperature of the cosmic microwave background radiation?", 
+        choices: ["0 Kelvin", "2.7 Kelvin", "10 Kelvin", "273 Kelvin"], 
+        answer: "2.7 Kelvin", 
+        trivia: "The cosmic microwave background radiation has cooled over billions of years to a temperature of about 2.7 K."
+    },
+    { 
+        question: "What percentage of the universe is believed to be made of dark energy?", 
+        choices: ["27%", "68%", "5%", "90%"], 
+        answer: "68%", 
+        trivia: "Dark energy makes up about 68% of the universe, driving its accelerated expansion."
+    },
+    { 
+        question: "Which famous astronomer first observed the moons of Jupiter?", 
+        choices: ["Isaac Newton", "Johannes Kepler", "Galileo Galilei", "Tycho Brahe"], 
+        answer: "Galileo Galilei", 
+        trivia: "Galileo discovered Jupiter’s four largest moons — Io, Europa, Ganymede, and Callisto — in 1610."
+    },
+    { 
+        question: "What is the name of the point directly opposite the Sun in the sky from an observer on Earth?", 
+        choices: ["Nadir", "Aphelion", "Perihelion", "Anti-solar point"], 
+        answer: "Anti-solar point", 
+        trivia: "The anti-solar point is the spot directly opposite the Sun, often where shadows point during a lunar eclipse."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>

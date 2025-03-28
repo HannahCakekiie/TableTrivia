@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            opacity: 1;
+            transition: opacity 0.7s ease-out;
+            position: relative;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo, .settings-logo {
+            width: 90px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .background {
+            text-align: center;
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            margin-top: 150px;
+        }
+
+        .menu {
+            background: rgba(128, 0, 128, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .menu.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .menu-btn {
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+            background: linear-gradient(145deg, #ff77ff, #9050d0);
+        }
+
+        .character-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            transition: opacity 0.5s ease-out;
+            text-align: left;
+            flex-direction: row;
+        }
+
+        .character {
+            width: 120px;
+            margin-right: 15px;
+        }
+
+        .dialogue-box {
+            color: white;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .choose-btn {
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 15px;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .choose-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+            background: linear-gradient(145deg, #ff77ff, #9050d0);
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="trivia.png" alt="Table Trivia Logo" class="logo">
+        <img src="set.png" alt="Settings Icon" class="settings-logo" onclick="openSettings()">
+    </div>
+    <br><br><br>
+    <div class="background"> 
+        <div class="content"> 
+            <div class="menu" id="menu">
+                <button class="menu-btn" onclick="chooseCategory('astronomy.html')">Astronomy</button>
+                <button class="menu-btn" onclick="chooseCategory('big.html')">Big Bang Theory</button>
+                <button class="menu-btn large" onclick="chooseCategory('period.html')">Elements of the Periodic Table</button>
+            </div>
+        </div>
+
+        <div class="character-box" id="characterBox">
+            <img src="boy.png" alt="Scientist Character" class="character">
+            <div class="dialogue-box">
+                <p>Hello, young scientists! Get ready to uncover the universe’s biggest mysteries — from the explosive birth of the Big Bang to the wonders of Astronomy and the stars beyond. Let’s explore!</p>
+                <button class="choose-btn" onclick="showChoices()">Choose</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showChoices() {
+            const menu = document.getElementById("menu");
+            const characterBox = document.getElementById("characterBox");
+            menu.classList.add("show");
+            characterBox.classList.add("hidden");
+        }
+
+        function chooseCategory(page) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = page;
+            }, 700);
+        }
+
+        function openSettings() {
+            window.location.href = 'settingstab.html';
+        }
+    </script>
+</body>
+</html>

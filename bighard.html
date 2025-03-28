@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>BigBang Theory Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="bigmode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "bigmode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What is the Planck time, and why is it significant?", 
+        choices: ["First atoms", "Smallest time unit", "Star formation", "Universe age"], 
+        answer: "Smallest time unit", 
+        trivia: "The Planck time (10^-43 seconds) is the smallest meaningful time scale, before which physics breaks down."
+    },
+    { 
+        question: "What key issue does the inflation theory address?", 
+        choices: ["Horizon problem", "Galaxy formation", "Supernovae", "Light speed"], 
+        answer: "Horizon problem", 
+        trivia: "The horizon problem questions why the universe has a uniform temperature despite regions never being in contact. Inflation solves this by stretching the universe rapidly."
+    },
+    { 
+        question: "What is the baryon asymmetry problem?", 
+        choices: ["Matter-antimatter imbalance", "Uneven galaxies", "Weak force strength", "Expansion rate"], 
+        answer: "Matter-antimatter imbalance", 
+        trivia: "The universe should have equal amounts of matter and antimatter, but it contains mostly matter, an unsolved mystery in physics."
+    },
+    { 
+        question: "What does the Cosmic Microwave Background (CMB) polarization indicate?", 
+        choices: ["Dark matter", "Inflation evidence", "Black holes", "Galaxy rotation"], 
+        answer: "Inflation evidence", 
+        trivia: "The polarization of the CMB suggests that rapid inflation occurred, stretching light waves and leaving detectable patterns."
+    },
+    { 
+        question: "What does 'false vacuum' describe in early universe models?", 
+        choices: ["Black hole collapse", "Quantum state", "New galaxy", "Empty space"], 
+        answer: "Quantum state", 
+        trivia: "A false vacuum is an unstable high-energy state that can decay, triggering rapid expansion (inflation)."
+    },
+    { 
+        question: "When did Big Bang nucleosynthesis occur?", 
+        choices: ["10^-43 sec", "3-20 min", "1 billion years", "After galaxies"], 
+        answer: "3-20 min", 
+        trivia: "Big Bang nucleosynthesis happened a few minutes after the Big Bang, forming light elements like hydrogen and helium."
+    },
+    { 
+        question: "Which discovery confirmed the Cosmic Microwave Background?", 
+        choices: ["Redshift data", "Penzias & Wilson", "Kepler’s laws", "Relativity"], 
+        answer: "Penzias & Wilson", 
+        trivia: "In 1964, Arno Penzias and Robert Wilson detected unexpected background radiation, later identified as the CMB, a key proof of the Big Bang."
+    },
+    { 
+        question: "Which fundamental force separated first after the Big Bang?", 
+        choices: ["Gravity", "Electromagnetism", "Strong force", "Weak force"], 
+        answer: "Gravity", 
+        trivia: "Gravity was the first force to separate from the others, influencing how matter clumped to form galaxies."
+    },
+    { 
+        question: "What does the Ekpyrotic model propose?", 
+        choices: ["Cyclic universe", "Black hole replacement", "No inflation", "Steady-State"], 
+        answer: "Cyclic universe", 
+        trivia: "The Ekpyrotic model suggests the universe undergoes repeated cycles of expansion and contraction instead of originating from a singularity."
+    },
+    { 
+        question: "What would happen if the universe’s expansion rate was slightly different?", 
+        choices: ["Collapse or expand too fast", "Stronger CMB", "No black holes", "Expansion stops"], 
+        answer: "Collapse or expand too fast", 
+        trivia: "If the universe expanded too quickly, galaxies wouldn’t form. If it expanded too slowly, it would collapse back into a singularity."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>

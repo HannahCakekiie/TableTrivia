@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Settings - Table Trivia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('BGWITHWHITE.png') no-repeat center center/cover;
+        }
+
+        .settings-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            width: 500px;
+        }
+
+        .settings-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .logout-button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .logout-button:hover {
+            background: rgb(63, 6, 92);
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <h2>Thank you, Young Scientist!</h2>
+        <button class="logout-button" onclick="logout()">Log Out</button>
+    </div>
+
+    <script>
+        function logout() {
+            window.location.href = 'tablog.html'; 
+        }
+    </script>
+</body>
+</html>

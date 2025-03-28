@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>The Periodic Table Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="periodicmed.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "periodicmed.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+            { question: "What is the first element on the periodic table?", choices: ["Oxygen", "Carbon", "Hydrogen", "Helium"], answer: "Hydrogen", trivia: "Hydrogen is the lightest and most abundant element in the universe!" },
+            { question: "What symbol represents oxygen?", choices: ["O", "Ox", "O2", "O3"], answer: "O", trivia: "Oxygen's symbol is simply 'O' — it's essential for breathing." },
+            { question: "What is the heaviest naturally occurring element?", choices: ["Uranium", "Lead", "Gold", "Iron"], answer: "Uranium", trivia: "Uranium (U) is the heaviest naturally found element, used in nuclear energy." },
+            { question: "What is the symbol for gold?", choices: ["G", "Go", "Au", "Ag"], answer: "Au", trivia: "Gold’s symbol 'Au' comes from the Latin word 'Aurum,' meaning 'shining dawn.'" },
+            { question: "What is the most abundant element in the Earth's crust?", choices: ["Carbon", "Iron", "Oxygen", "Silicon"], answer: "Oxygen", trivia: "Oxygen makes up nearly half of the Earth’s crust!" },
+            { question: "What is the lightest metal?", choices: ["Aluminum", "Magnesium", "Lithium", "Sodium"], answer: "Lithium", trivia: "Lithium is so light it can float on water — it’s also used in batteries." },
+            { question: "What is the atomic number of carbon?", choices: ["4", "5", "6", "7"], answer: "6", trivia: "Carbon’s atomic number is 6 — it's the backbone of all living things!" },
+            { question: "Which gas makes up most of the air we breathe?", choices: ["Oxygen", "Carbon dioxide", "Nitrogen", "Helium"], answer: "Nitrogen", trivia: "Around 78% of the air is nitrogen — oxygen is only about 21%!" },
+            { question: "What element has the symbol 'Fe'?", choices: ["Gold", "Fluorine", "Iron", "Zinc"], answer: "Iron", trivia: "Fe stands for 'Ferrum,' the Latin word for iron — a key part of steel." },
+            { question: "Which element is a noble gas?", choices: ["Chlorine", "Argon", "Bromine", "Phosphorus"], answer: "Argon", trivia: "Argon is a noble gas — it’s colorless, odorless, and doesn’t react easily." },
+            // Add more questions for elements 1 to 118
+            { question: "What is the chemical symbol for Hydrogen?", choices: ["H", "He", "O", "N"], answer: "H", trivia: "Hydrogen is the most abundant element in the universe." },
+            { question: "What is the chemical symbol for Helium?", choices: ["H", "He", "O", "N"], answer: "He", trivia: "Helium is the second lightest element and is used in balloons." },
+            { question: "What is the chemical symbol for Lithium?", choices: ["Li", "Be", "B", "Na"], answer: "Li", trivia: "Lithium is used in rechargeable batteries." },
+            { question: "What is the chemical symbol for Beryllium?", choices: ["Be", "Mg", "Ca", "Sr"], answer: "Be", trivia: "Beryllium is used in aerospace components." },
+            { question: "What is the chemical symbol for Boron?", choices: ["B", "C", "N", "O"], answer: "B", trivia: "Boron is used in glass and ceramics." },
+            { question: "What is the chemical symbol for Carbon?", choices: ["C", "N", "O", "P"], answer: "C", trivia: "Carbon is the basis of all known life." },
+            { question: "What is the chemical symbol for Nitrogen?", choices: ["N", "O", "C", "H"], answer: "N", trivia: "Nitrogen is essential for plant growth." },
+            { question: "What is the chemical symbol for Oxygen?", choices: ["O", "N", "C", "H"], answer: "O", trivia: "Oxygen is produced by plants during photosynthesis." },
+            { question: "What is the chemical symbol for Fluorine?", choices: ["F", "Cl", "Br", "I"], answer: "F", trivia: "Fluorine is used in toothpaste to prevent cavities." },
+            { question: "What is the chemical symbol for Neon?", choices: ["Ne", "Ar", "Kr", "Xe"], answer: "Ne", trivia: "Neon is used in high-voltage indicators." },
+            { question: "What is the chemical symbol for Gold?", choices: ["Au", "Ag", "Fe", "Pb"], answer: "Au", trivia: "Gold is used in jewelry and electronics." },
+            { question: "What is the chemical symbol for Silver?", choices: ["Ag", "Au", "Fe", "Cu"], answer: "Ag", trivia: "Silver is used in photography and jewelry." },
+            { question: "What is the chemical symbol for Iron?", choices: ["Fe", "Ir", "Au", "Ag"], answer: "Fe", trivia: "Iron is essential for blood production in humans." },
+            { question: "What is the chemical symbol for Sodium?", choices: ["Na", "K", "Ca", "Mg"], answer: "Na", trivia: "Sodium is important for maintaining fluid balance in the body." },
+            { question: "What is the chemical symbol for Potassium?", choices: ["K", "P", "Na", "Ca"], answer: "K", trivia: "Potassium is vital for heart function." },
+            { question: "What is the chemical symbol for Uranium?", choices: ["U", "Ur", "Un", "Uu"], answer: "U", trivia: "Uranium is used as fuel in nuclear reactors." },
+            { question: "What is the chemical symbol for Mercury?", choices: ["Hg", "Me", "Mn", "Mg"], answer: "Hg", trivia: "Mercury is used in thermometers and barometers." },
+            { question: "What is the chemical symbol for Calcium?", choices: ["Ca", "C", "Cl", "Co"], answer: "Ca", trivia: "Calcium is important for bone health." },
+            { question: "What is the chemical symbol for Barium?", choices: ["Ba", "B", "Bi", "Br"], answer: "Ba", trivia: "Barium is used in medical imaging." },
+            { question: "What is the chemical symbol for Radon?", choices: ["Rn", "Ra", "Rd", "Re"], answer: "Rn", trivia: "Radon is a radioactive gas that can accumulate in homes." },
+            { question: "What is the chemical symbol for Argon?", choices: ["Ar", "Ag", "Au", "Al"], answer: "Ar", trivia: "Argon is used in light bulbs and welding." },
+            { question: "What is the chemical symbol for Zinc?", choices: ["Zn", "Z", "Zr", "Au"], answer: "Zn", trivia: "Zinc is important for immune function." },
+            { question: "What is the chemical symbol for Chlorine?", choices: ["Cl", "C", "Ca", "Co"], answer: "Cl", trivia: "Chlorine is used in swimming pools to kill bacteria." },
+            { question: "What is the chemical symbol for Iodine?", choices: ["I", "Ir", "In", "Id"], answer: "I", trivia: "Iodine is used in antiseptics and disinfectants." }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+        function showResults() {
+            let scoreCategory = "";
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+        function goHome() {
+            location.reload();
+        }
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>

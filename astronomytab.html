@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Solar System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: url('ok.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        /* Title Styling */
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .solar-system {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .planet-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            gap: 25px;
+        }
+
+        .planet {
+            cursor: pointer;
+            transition: transform 0.3s;
+            filter: drop-shadow(0px 0px 10px rgb(0, 0, 0));
+            position: relative;
+        }
+
+        .planet:hover {
+            transform: scale(1.2);
+        }
+
+        .sun { width: 160px; height: 160px; }
+        .mercury { width: 50px; height: 50px; }
+        .venus { width: 80px; height: 80px; }
+        .earth { width: 90px; height: 90px; }
+        .mars { width: 70px; height: 70px; }
+        .jupiter { width: 140px; height: 140px; }
+        .saturn { width: 130px; height: 130px; }
+        .uranus { width: 110px; height: 110px; }
+        .neptune { width: 100px; height: 100px; }
+
+        /* Info Box - Centered on Screen */
+        .planet-info {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            font-size: 16px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.2s;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .show-info {
+            opacity: 1;
+        }
+
+        /* Back Button Styling */
+        .back-button {
+            margin-top: 40px;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+            transition: background 0.3s, transform 0.2s;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .back-button:hover {
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transform: scale(1.1);
+            font-family: 'Press Start 2P', cursive;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="solar-system">
+        <div class="title">The Solar System</div>
+        
+        <div class="planet-container">
+            <img src="Sun.webp" class="planet sun" onmouseover="showInfo('Sun', '🌞 The center of our solar system, providing energy to all planets.')" onmouseout="hideInfo()">
+            <img src="Mercury.webp" class="planet mercury" onmouseover="showInfo('Mercury', '🪐 The Swift Planet: Fastest orbit (88 days), closest to the Sun.')" onmouseout="hideInfo()">
+            <img src="Venus.webp" class="planet venus" onmouseover="showInfo('Venus', '🔥 The Twin of Earth: Hottest planet due to its thick atmosphere.')" onmouseout="hideInfo()">
+            <img src="Earth.webp" class="planet earth" onmouseover="showInfo('Earth', '🌍 The Blue Planet: Only planet known to support life.')" onmouseout="hideInfo()">
+            <img src="Mars.webp" class="planet mars" onmouseover="showInfo('Mars', '🔴 The Red Planet: Home to the tallest volcano, Olympus Mons.')" onmouseout="hideInfo()">
+            <img src="Jupiter.webp" class="planet jupiter" onmouseover="showInfo('Jupiter', '🌀 The Giant Planet: Largest planet with a huge storm (Great Red Spot).')" onmouseout="hideInfo()">
+            <img src="Saturn.png" class="planet saturn" onmouseover="showInfo('Saturn', '💍 The Ringed Planet: Famous for its magnificent rings.')" onmouseout="hideInfo()">
+            <img src="Uranus.png" class="planet uranus" onmouseover="showInfo('Uranus', '🧊 The Ice Giant: Rotates sideways due to a massive collision.')" onmouseout="hideInfo()">
+            <img src="Neps.avif" class="planet neptune" onmouseover="showInfo('Neptune', '💨 The Windy Planet: Has the strongest winds in the solar system.')" onmouseout="hideInfo()">
+        </div>
+
+        <!-- Info Box -->
+        <div id="planet-info" class="planet-info"></div>
+
+        <!-- Back Button -->
+        <button class="back-button" onclick="goBack()">🔙 Back</button>
+    </div>
+
+    <script>
+        function showInfo(name, description) {
+            const infoBox = document.getElementById('planet-info');
+            infoBox.innerHTML = `<h2>${name}</h2><p>${description}</p>`;
+            infoBox.classList.add('show-info');
+        }
+
+        function hideInfo() {
+            const infoBox = document.getElementById('planet-info');
+            infoBox.classList.remove('show-info');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

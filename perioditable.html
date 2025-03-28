@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Periodic Table</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .table-container {
+            display: grid;
+            grid-template-columns: repeat(18, 50px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: -80px;
+        }
+
+        .tables-container {
+            display: grid;
+            grid-template-columns: repeat(18, 50px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: -20px;
+        }
+        .element {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            position: relative;
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+
+        .element-number {
+            font-size: 10px;
+            color: #ddd;
+        }
+
+        .element:hover {
+            background-color: #6e0dd080;
+        }
+
+        .element-info {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            color: #fff;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10;
+        }
+
+        .element:hover .element-info {
+            display: block;
+        }
+
+        .spacer {
+            width: 150px;
+            height: 50px;
+            visibility: hidden;
+        }
+        .buttons {
+            display: flex;
+            justify-content: flex-start; /* line up buttons to the left */
+            gap: 10px;
+            margin-left: 100px;           /* same left offset as .dialogue-box */
+        }
+        .btn {
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+            background: linear-gradient(145deg, #ff77ff, #9050d0);
+        }
+
+        a.btn {
+            text-decoration: none; /* Removes underline on links */
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <center><h1>Interactive Periodic Table</h1></center>
+    <br>
+    <br>
+    <br>
+    <div class="table-container">
+        <!-- Row 1 -->
+        <div class="element"><span class="element-number">1</span>H<div class="element-info">Hydrogen: Atomic Mass: 1.008, Lightest element.</div></div>
+        <div class="spacer" style="grid-column: span 16"></div>
+        <div class="element"><span class="element-number">2</span>He<div class="element-info">Helium: Atomic Mass: 4.0026, Used in balloons.</div></div>
+
+        <!-- Row 2 -->
+        <div class="element"><span class="element-number">3</span>Li<div class="element-info">Lithium: Atomic Mass: 6.94, Powers batteries.</div></div>
+        <div class="element"><span class="element-number">4</span>Be<div class="element-info">Beryllium: Atomic Mass: 9.0122, Aerospace material.</div></div>
+        <div class="spacer" style="grid-column: span 10"></div>
+        <div class="element"><span class="element-number">5</span>B<div class="element-info">Boron: Atomic Mass: 10.81, Used in glass.</div></div>
+        <div class="element"><span class="element-number">6</span>C<div class="element-info">Carbon: Atomic Mass: 12.011, Essential for life.</div></div>
+        <div class="element"><span class="element-number">7</span>N<div class="element-info">Nitrogen: Atomic Mass: 14.007, Main part of air.</div></div>
+        <div class="element"><span class="element-number">8</span>O<div class="element-info">Oxygen: Atomic Mass: 15.999, Vital for respiration.</div></div>
+        <div class="element"><span class="element-number">9</span>F<div class="element-info">Fluorine: Atomic Mass: 18.998, In toothpaste.</div></div>
+        <div class="element"><span class="element-number">10</span>Ne<div class="element-info">Neon: Atomic Mass: 20.180, For bright signs.</div></div>
+
+        <!-- Row 3 -->
+        <div class="element"><span class="element-number">11</span>Na<div class="element-info">Sodium: Atomic Mass: 22.990, Found in salt.</div></div>
+        <div class="element"><span class="element-number">12</span>Mg<div class="element-info">Magnesium: Atomic Mass: 24.305, Essential mineral.</div></div>
+        <div class="spacer" style="grid-column: span 10"></div>
+        <div class="element"><span class="element-number">13</span>Al<div class="element-info">Aluminum: Atomic Mass: 26.982, Lightweight metal.</div></div>
+        <div class="element"><span class="element-number">14</span>Si<div class="element-info">Silicon: Atomic Mass: 28.085, Used in electronics.</div></div>
+        <div class="element"><span class="element-number">15</span>P<div class="element-info">Phosphorus: Atomic Mass: 30.974, Essential for DNA.</div></div>
+        <div class="element"><span class="element-number">16</span>S<div class="element-info">Sulfur: Atomic Mass: 32.06, Found in volcanoes.</div></div>
+        <div class="element"><span class="element-number">17</span>Cl<div class="element-info">Chlorine: Atomic Mass: 35.45, Disinfects water.</div></div>
+        <div class="element"><span class="element-number">18</span>Ar<div class="element-info">Argon: Atomic Mass: 39.948, Noble gas, in lights.</div></div>
+
+        <!-- Row 4 -->
+        <div class="element"><span class="element-number">19</span>K<div class="element-info">Potassium: Atomic Mass: 39.098, Essential for cells.</div></div>
+        <div class="element"><span class="element-number">20</span>Ca<div class="element-info">Calcium: Atomic Mass: 40.078, Strengthens bones.</div></div>
+        <div class="element"><span class="element-number">21</span>Sc<div class="element-info">Scandium: Atomic Mass: 44.956, Lightweight metal.</div></div>
+        <div class="element"><span class="element-number">22</span>Ti<div class="element-info">Titanium: Atomic Mass: 47.867, Strong, used in aerospace.</div></div>
+        <div class="element"><span class="element-number">23</span>V<div class="element-info">Vanadium: Atomic Mass: 50.941, Strengthens steel.</div></div>
+        <div class="element"><span class="element-number">24</span>Cr<div class="element-info">Chromium: Atomic Mass: 51.996, Shiny, resists rust.</div></div>
+        <div class="element"><span class="element-number">25</span>Mn<div class="element-info">Manganese: Atomic Mass: 54.938, Strengthens steel.</div></div>
+        <div class="element"><span class="element-number">26</span>Fe<div class="element-info">Iron: Atomic Mass: 55.845, Essential for blood.</div></div>
+        <div class="element"><span class="element-number">27</span>Co<div class="element-info">Cobalt: Atomic Mass: 58.933, Used in magnets.</div></div>
+        <div class="element"><span class="element-number">28</span>Ni<div class="element-info">Nickel: Atomic Mass: 58.693, Resists corrosion.</div></div>
+        <div class="element"><span class="element-number">29</span>Cu<div class="element-info">Copper: Atomic Mass: 63.546, Conducts electricity.</div></div>
+        <div class="element"><span class="element-number">30</span>Zn<div class="element-info">Zinc: Atomic Mass: 65.38, Prevents rust, supports immunity.</div></div>
+        <div class="element"><span class="element-number">31</span>Ga<div class="element-info">Gallium: Atomic Mass: 69.723, Melts in your hand.</div></div>
+        <div class="element"><span class="element-number">32</span>Ge<div class="element-info">Germanium: Atomic Mass: 72.630, Used in semiconductors.</div></div>
+        <div class="element"><span class="element-number">33</span>As<div class="element-info">Arsenic: Atomic Mass: 74.922, Toxic element, used in alloys.</div></div>
+        <div class="element"><span class="element-number">34</span>Se<div class="element-info">Selenium: Atomic Mass: 78.971, Helps body processes.</div></div>
+        <div class="element"><span class="element-number">35</span>Br<div class="element-info">Bromine: Atomic Mass: 79.904, Liquid at room temperature.</div></div>
+        <div class="element"><span class="element-number">36</span>Kr<div class="element-info">Krypton: Atomic Mass: 83.798, Used in high-performance lights.</div></div>
+
+        <!--Row 5-->
+         <div class="element"><span class="element-number">37</span>Rb<div class="element-info">Rubidium: Atomic Mass: 85.468, Soft, reactive metal.</div></div>
+         <div class="element"><span class="element-number">38</span>Sr<div class="element-info">Strontium: Atomic Mass: 87.62, Burns red in fireworks.</div></div>
+         <div class="element"><span class="element-number">39</span>Y<div class="element-info">Yttrium: Atomic Mass: 88.906, Used in LEDs.</div></div>
+         <div class="element"><span class="element-number">40</span>Zr<div class="element-info">Zirconium: Atomic Mass: 91.224, Resists corrosion.</div></div>
+         <div class="element"><span class="element-number">41</span>Nb<div class="element-info">Niobium: Atomic Mass: 92.906, Strengthens steel.</div></div>
+         <div class="element"><span class="element-number">42</span>Mo<div class="element-info">Molybdenum: Atomic Mass: 95.95, High melting point.</div></div>
+         <div class="element"><span class="element-number">43</span>Tc<div class="element-info">Technetium: Atomic Mass: 98, First artificially produced element.</div></div>
+         <div class="element"><span class="element-number">44</span>Ru<div class="element-info">Ruthenium: Atomic Mass: 101.07, Used in electronics.</div></div>
+         <div class="element"><span class="element-number">45</span>Rh<div class="element-info">Rhodium: Atomic Mass: 102.91, Reflective, used in jewelry.</div></div>
+         <div class="element"><span class="element-number">46</span>Pd<div class="element-info">Palladium: Atomic Mass: 106.42, Used in catalytic converters.</div></div>
+         <div class="element"><span class="element-number">47</span>Ag<div class="element-info">Silver: Atomic Mass: 107.87, Conducts electricity, used in jewelry.</div></div>
+         <div class="element"><span class="element-number">49</span>In<div class="element-info">Indium: Atomic Mass: 114.82, Used in touchscreens.</div></div>
+         <div class="element"><span class="element-number">50</span>Sn<div class="element-info">Tin: Atomic Mass: 118.71, Used in soldering.</div></div>
+         <div class="element"><span class="element-number">48</span>Cd<div class="element-info">Cadmium: Atomic Mass: 112.41, Used in batteries.</div></div>
+         <div class="element"><span class="element-number">51</span>Sb<div class="element-info">Antimony: Atomic Mass: 121.76, Used in flame retardants.</div></div>
+         <div class="element"><span class="element-number">52</span>Te<div class="element-info">Tellurium: Atomic Mass: 127.60, Used in solar panels.</div></div>
+         <div class="element"><span class="element-number">53</span>I<div class="element-info">Iodine: Atomic Mass: 126.90, Essential for thyroid health.</div></div>
+         <div class="element"><span class="element-number">54</span>Xe<div class="element-info">Xenon: Atomic Mass: 131.29, Used in high-performance lamps.</div></div>
+
+         <!--Row 6-->
+        <div class="element"><span class="element-number">55</span>Cs<div class="element-info">Cesium: Atomic Mass: 132.91, Soft, highly reactive metal.</div></div>
+        <div class="element"><span class="element-number">56</span>Ba<div class="element-info">Barium: Atomic Mass: 137.33, Used in fireworks and medical imaging.</div></div>
+        <div class="element"><span class="element-number">57</span>La<div class="element-info">Lanthanum: Atomic Mass: 138.91, Soft, malleable metal.</div></div>
+        <div class="element"><span class="element-number">72</span>Hf<div class="element-info">Hafnium: Atomic Mass: 178.49, Used in nuclear reactors.</div></div>
+        <div class="element"><span class="element-number">73</span>Ta<div class="element-info">Tantalum: Atomic Mass: 180.95, Resists corrosion.</div></div>
+        <div class="element"><span class="element-number">74</span>W<div class="element-info">Tungsten: Atomic Mass: 183.84, Highest melting point.</div></div>
+        <div class="element"><span class="element-number">75</span>Re<div class="element-info">Rhenium: Atomic Mass: 186.21, Rare, high heat resistance.</div></div>
+        <div class="element"><span class="element-number">76</span>Os<div class="element-info">Osmium: Atomic Mass: 190.23, Densest natural element.</div></div>
+        <div class="element"><span class="element-number">77</span>Ir<div class="element-info">Iridium: Atomic Mass: 192.22, Highly corrosion-resistant.</div></div>
+        <div class="element"><span class="element-number">78</span>Pt<div class="element-info">Platinum: Atomic Mass: 195.08, Precious, used in jewelry.</div></div>
+        <div class="element"><span class="element-number">79</span>Au<div class="element-info">Gold: Atomic Mass: 196.97, Valuable, used in electronics.</div></div>
+        <div class="element"><span class="element-number">80</span>Hg<div class="element-info">Mercury: Atomic Mass: 200.59, Liquid metal, toxic.</div></div>
+        <div class="element"><span class="element-number">81</span>Tl<div class="element-info">Thallium: Atomic Mass: 204.38, Highly toxic.</div></div>
+        <div class="element"><span class="element-number">82</span>Pb<div class="element-info">Lead: Atomic Mass: 207.2, Heavy metal, toxic.</div></div>
+        <div class="element"><span class="element-number">83</span>Bi<div class="element-info">Bismuth: Atomic Mass: 208.98, Low toxicity, colorful oxide.</div></div>
+        <div class="element"><span class="element-number">84</span>Po<div class="element-info">Polonium: Atomic Mass: 209, Highly radioactive.</div></div>
+        <div class="element"><span class="element-number">85</span>At<div class="element-info">Astatine: Atomic Mass: 210, Rare, radioactive.</div></div>
+        <div class="element"><span class="element-number">86</span>Rn<div class="element-info">Radon: Atomic Mass: 222, Radioactive gas.</div></div>
+
+        <!-- Row 7 (87 to 118) -->
+        <div class="element"><span class="element-number">87</span>Fr<div class="element-info">Francium: Atomic Mass: 223, Highly radioactive, very rare.</div></div>
+        <div class="element"><span class="element-number">88</span>Ra<div class="element-info">Radium: Atomic Mass: 226, Radioactive, once used in luminous paints.</div></div>
+        <div class="element"><span class="element-number">89</span>Ac<div class="element-info">Actinium: Atomic Mass: 227, Radioactive, glows in the dark.</div></div>
+        <div class="element"><span class="element-number">104</span>Rf<div class="element-info">Rutherfordium: Atomic Mass: 267, Synthetic, short-lived.</div></div>
+        <div class="element"><span class="element-number">105</span>Db<div class="element-info">Dubnium: Atomic Mass: 268, Synthetic, highly radioactive.</div></div>
+        <div class="element"><span class="element-number">106</span>Sg<div class="element-info">Seaborgium: Atomic Mass: 271, Synthetic, named after Glenn Seaborg.</div></div>
+        <div class="element"><span class="element-number">107</span>Bh<div class="element-info">Bohrium: Atomic Mass: 270, Synthetic, named after Niels Bohr.</div></div>
+        <div class="element"><span class="element-number">108</span>Hs<div class="element-info">Hassium: Atomic Mass: 277, Synthetic, named after Hesse, Germany.</div></div>
+        <div class="element"><span class="element-number">109</span>Mt<div class="element-info">Meitnerium: Atomic Mass: 278, Synthetic, named after Lise Meitner.</div></div>
+        <div class="element"><span class="element-number">110</span>Ds<div class="element-info">Darmstadtium: Atomic Mass: 281, Synthetic, named after Darmstadt, Germany.</div></div>
+        <div class="element"><span class="element-number">111</span>Rg<div class="element-info">Roentgenium: Atomic Mass: 282, Synthetic, named after Wilhelm Röntgen.</div></div>
+        <div class="element"><span class="element-number">112</span>Cn<div class="element-info">Copernicium: Atomic Mass: 285, Synthetic, named after Copernicus.</div></div>
+        <div class="element"><span class="element-number">113</span>Nh<div class="element-info">Nihonium: Atomic Mass: 286, Synthetic, named after Japan.</div></div>
+        <div class="element"><span class="element-number">114</span>Fl<div class="element-info">Flerovium: Atomic Mass: 289, Synthetic, named after Flerov Laboratory.</div></div>
+        <div class="element"><span class="element-number">115</span>Mc<div class="element-info">Moscovium: Atomic Mass: 288, Synthetic, named after Moscow.</div></div>
+        <div class="element"><span class="element-number">116</span>Lv<div class="element-info">Livermorium: Atomic Mass: 293, Synthetic, named after Livermore Lab.</div></div>
+        <div class="element"><span class="element-number">117</span>Ts<div class="element-info">Tennessine: Atomic Mass: 294, Synthetic, named after Tennessee.</div></div>
+        <div class="element"><span class="element-number">118</span>Og<div class="element-info">Oganesson: Atomic Mass: 294, Synthetic, named after Yuri Oganessian.</div></div>
+    </div>
+    <br>
+    <br>
+    <div class="tables-container">
+        <!--Row 8-->
+        <div class="spacer" style="grid-column: span 3"></div>
+         <div class="element">Ce<span class="element-number">58</span><div class="element-info">Cerium: Atomic Mass: 140.116, Used in catalysts.</div></div>
+         <div class="element">Pr<span class="element-number">59</span><div class="element-info">Praseodymium: Atomic Mass: 140.907, Used in magnets.</div></div>
+         <div class="element">Nd<span class="element-number">60</span><div class="element-info">Neodymium: Atomic Mass: 144.242, Used in strong magnets.</div></div>
+         <div class="element">Pm<span class="element-number">61</span><div class="element-info">Promethium: Atomic Mass: 145, Radioactive, used in luminous paint.</div></div>
+         <div class="element">Sm<span class="element-number">62</span><div class="element-info">Samarium: Atomic Mass: 150.36, Used in magnets and lasers.</div></div>
+         <div class="element">Eu<span class="element-number">63</span><div class="element-info">Europium: Atomic Mass: 151.964, Used in phosphorescent materials.</div></div>
+         <div class="element">Gd<span class="element-number">64</span><div class="element-info">Gadolinium: Atomic Mass: 157.25, Used in MRI contrast agents.</div></div>
+         <div class="element">Tb<span class="element-number">65</span><div class="element-info">Terbium: Atomic Mass: 158.925, Used in solid-state devices.</div></div>
+         <div class="element">Dy<span class="element-number">66</span><div class="element-info">Dysprosium: Atomic Mass: 162.500, Used in magnets.</div></div>
+         <div class="element">Ho<span class="element-number">67</span><div class="element-info">Holmium: Atomic Mass: 164.930, Used in lasers.</div></div>
+         <div class="element">Er<span class="element-number">68</span><div class="element-info">Erbium: Atomic Mass: 167.259, Used in fiber optics.</div></div>
+         <div class="element">Tm<span class="element-number">69</span><div class="element-info">Thulium: Atomic Mass: 168.934, Used in medical imaging.</div></div>
+         <div class="element">Yb<span class="element-number">70</span><div class="element-info">Ytterbium: Atomic Mass: 173.04, Used in lasers.</div></div>
+         <div class="element">Lu<span class="element-number">71</span><div class="element-info">Lutetium: Atomic Mass: 174.966, Used in catalysts.</div></div><br>
+         
+         <!--Row 9-->
+         <div class="spacer" style="grid-column: span 3"></div>
+         <div class="element">Th<span class="element-number">90</span><div class="element-info">Thorium: Atomic Mass: 232.038, Used in nuclear reactors.</div></div>
+         <div class="element">Pa<span class="element-number">91</span><div class="element-info">Protactinium: Atomic Mass: 231.035, Used in nuclear research.</div></div>
+         <div class="element">U<span class="element-number">92</span><div class="element-info">Uranium: Atomic Mass: 238.028, Used as fuel in nuclear reactors.</div></div>
+         <div class="element">Np<span class="element-number">93</span><div class="element-info">Neptunium: Atomic Mass: 237, Used in nuclear reactors.</div></div>
+         <div class="element">Pu<span class="element-number">94</span><div class="element-info">Plutonium: Atomic Mass: 244, Used in nuclear weapons and reactors.</div></div>
+         <div class="element">Am<span class="element-number">95</span><div class="element-info">Americium: Atomic Mass: 243, Used in smoke detectors.</div></div>
+         <div class="element">Cm<span class="element-number">96</span><div class="element-info">Curium: Atomic Mass: 247, Used in nuclear research.</div></div>
+         <div class="element">Bk<span class="element-number">97</span><div class="element-info">Berkelium: Atomic Mass: 247, Used in scientific research.</div></div>
+         <div class="element">Cf<span class="element-number">98</span><div class="element-info">Californium: Atomic Mass: 251, Used in neutron sources.</div></div>
+         <div class="element">Es<span class="element-number">99</span><div class="element-info">Einsteinium: Atomic Mass: 252, Used in scientific research.</div></div>
+         <div class="element">Fm<span class="element-number">100</span><div class="element-info">Fermium: Atomic Mass: 257, Used in scientific research.</div></div>
+         <div class="element">Md<span class="element-number">101</span><div class="element-info">Mendelevium: Atomic Mass: 258, Used in scientific research.</div></div>
+         <div class="element">No<span class="element-number">102</span><div class="element-info">Nobelium: Atomic Mass: 259, Used in scientific research.</div></div>
+         <div class="element">Lr<span class="element-number">103</span><div class="element-info">Lawrencium: Atomic Mass: 262, Used in scientific research.</div></div>
+
+    </div>
+    <br>
+    <div class="buttons">
+        <a href="period.html" class="btn">🔙Back</a>
+    </div>
+</body>
+</html>
