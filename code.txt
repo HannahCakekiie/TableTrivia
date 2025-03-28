@@ -1,0 +1,4305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Quiz</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            width: 100px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 120px; /* Adjust position */
+    left: 5.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.clickable-logo {
+    position: absolute;
+    bottom: 280px; /* Adjust position */
+    left: -21.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-logo img {
+    width: 120px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-logo img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>Astronomy Quiz</h1>
+            
+            <!-- Clickable Image -->
+            <div class="clickable-image">
+<img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+
+</div>
+<script>
+function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "astronomy.html"; // Change to the actual exit page
+    }
+}
+</script>
+
+            </div>
+
+            <!--Logo-->
+            <div class="clickable-logo">
+                <img src="trivia.png" alt="Logo">
+                </div>
+
+            <button class="menu-btn" onclick="chooseCategory('atronomyquiz.html')">Easy</button>
+            <button class="menu-btn" onclick="chooseCategory('astronomymid.html')">Medium</button>
+            <button class="menu-btn" onclick="chooseCategory('astronomyhard.html')">Hard</button>
+            </div>
+            </div>
+</body>
+<script>
+     function chooseCategory(page) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = page;
+            }, 700);
+        }
+</script>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Trivia</title>
+  <style>
+    body {
+      background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      color: #fff;
+    }
+
+    /* Remove text-align:center so we can position elements more freely */
+    .game-container {
+      position: relative;
+    }
+
+    .Girl img {
+      position: absolute;
+      bottom: 50px;
+      left: -1.5%;
+      transform: translateX(-50%);
+      width: 300px;
+    }
+
+    /* Left-align the dialogue box */
+    .dialogue-box {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      padding: 15px;
+      width: 750px;
+      margin: 180px 0 20px 60px; /* top right bottom left */
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+
+    /* Left-align the buttons to match the dialogue box */
+    .buttons {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-left: 50px; /* aligns with the dialogue-box left margin */
+    }
+
+    .btn {
+      background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+      background: linear-gradient(145deg, #ff77ff, #9050d0);
+    }
+
+    a.btn {
+      text-decoration: none; /* Removes underline on links */
+    }
+
+    .dialogue-box {
+    /* Already in your code, just ensure these properties exist */
+    margin: 180px 0 20px 50px; /* top right bottom left */
+    text-align: left;          /* left-align text inside */
+    }
+
+    .buttons {
+    display: flex;
+    justify-content: flex-start; /* line up buttons to the left */
+    gap: 10px;
+    margin-left: 50px;           /* same left offset as .dialogue-box */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="game-container">
+    <div class="Girl">
+      <img src="Students.png" alt="Student">
+    </div>
+
+    <div class="dialogue-box">
+        Hey there, fellow schoolmates! Are you ready to explore the vast wonders of the universe? Astronomy is all about discovering the secrets of space — from dazzling stars and distant planets to swirling galaxies and mysterious black holes. There’s a whole universe out there waiting to be explored. So, let’s take off on an adventure beyond the skies and uncover the incredible stories hidden among the stars!
+    </div>
+    <div class="buttons">
+      <a href="tabtrivia.html" class="btn">🔙Back</a>
+      <a href="astromode.html" class="btn">💡Quiz</a>
+      <a href="astronomytab.html" class="btn">Solar System</a>
+      <a href="https://www.youtube.com/watch?v=libKVRa01L8" class="btn">❓ What’s Astronomy?</a>
+    </div>
+  </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 170px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>Astronomy Quiz</h1>
+
+            <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="astromode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "astromode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What is the name of the hypothetical boundary surrounding a black hole beyond which nothing can escape?", 
+        choices: ["Singularity", "Event horizon", "Photon sphere", "Accretion disk"], 
+        answer: "Event horizon", 
+        trivia: "The event horizon is the 'point of no return' around a black hole — once crossed, not even light can escape."
+    },
+    { 
+        question: "What type of star remains after a supernova if the core's mass is between 1.4 and 3 times the Sun's mass?", 
+        choices: ["White dwarf", "Neutron star", "Black hole", "Red giant"], 
+        answer: "Neutron star", 
+        trivia: "A neutron star is incredibly dense, formed when a massive star collapses under its own gravity after a supernova."
+    },
+    { 
+        question: "What is the primary cause of a quasar's extreme luminosity?", 
+        choices: ["Supernova explosions", "Colliding galaxies", "Massive star formation", "Supermassive black holes"], 
+        answer: "Supermassive black holes", 
+        trivia: "Quasars are powered by supermassive black holes pulling in surrounding material, releasing immense energy."
+    },
+    { 
+        question: "What is the name of the largest known structure in the observable universe?", 
+        choices: ["The Local Group", "The Virgo Supercluster", "The Hercules-Corona Borealis Great Wall", "The Great Attractor"], 
+        answer: "The Hercules-Corona Borealis Great Wall", 
+        trivia: "This colossal galactic structure spans about 10 billion light-years, making it the largest known formation."
+    },
+    { 
+        question: "What is the primary evidence for the existence of dark matter?", 
+        choices: ["Gravitational lensing", "Cosmic background radiation", "Galaxy rotation curves", "Both A and C"], 
+        answer: "Both A and C", 
+        trivia: "Dark matter’s presence is inferred from gravitational lensing and the unexpected rotational speeds of galaxies."
+    },
+    { 
+        question: "Which element is created in the final stages of a massive star's life, leading to a supernova?", 
+        choices: ["Carbon", "Oxygen", "Iron", "Silicon"], 
+        answer: "Iron", 
+        trivia: "Iron builds up in the star’s core, but fusion can no longer release energy from iron, triggering a collapse and supernova."
+    },
+    { 
+        question: "What is the temperature of the cosmic microwave background radiation?", 
+        choices: ["0 Kelvin", "2.7 Kelvin", "10 Kelvin", "273 Kelvin"], 
+        answer: "2.7 Kelvin", 
+        trivia: "The cosmic microwave background radiation has cooled over billions of years to a temperature of about 2.7 K."
+    },
+    { 
+        question: "What percentage of the universe is believed to be made of dark energy?", 
+        choices: ["27%", "68%", "5%", "90%"], 
+        answer: "68%", 
+        trivia: "Dark energy makes up about 68% of the universe, driving its accelerated expansion."
+    },
+    { 
+        question: "Which famous astronomer first observed the moons of Jupiter?", 
+        choices: ["Isaac Newton", "Johannes Kepler", "Galileo Galilei", "Tycho Brahe"], 
+        answer: "Galileo Galilei", 
+        trivia: "Galileo discovered Jupiter’s four largest moons — Io, Europa, Ganymede, and Callisto — in 1610."
+    },
+    { 
+        question: "What is the name of the point directly opposite the Sun in the sky from an observer on Earth?", 
+        choices: ["Nadir", "Aphelion", "Perihelion", "Anti-solar point"], 
+        answer: "Anti-solar point", 
+        trivia: "The anti-solar point is the spot directly opposite the Sun, often where shadows point during a lunar eclipse."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>Astronomy Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="astromode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "astromode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What force keeps planets in orbit around the Sun?", 
+        choices: ["Electromagnetism", "Gravity", "Nuclear force", "Inertia"], 
+        answer: "Gravity", 
+        trivia: "Gravity pulls objects towards each other, and the Sun’s gravity keeps planets orbiting around it."
+    },
+    { 
+        question: "Which planet has the fastest rotation?", 
+        choices: ["Earth", "Mars", "Jupiter", "Saturn"], 
+        answer: "Jupiter", 
+        trivia: "Jupiter completes one rotation in about 10 hours — the fastest in our Solar System!"
+    },
+    { 
+        question: "What is a nebula?", 
+        choices: ["A type of galaxy", "A cloud of gas and dust", "A dying star", "A black hole"], 
+        answer: "A cloud of gas and dust", 
+        trivia: "Nebulas are vast clouds of gas and dust where new stars can form."
+    },
+    { 
+        question: "Which planet has the most moons?", 
+        choices: ["Earth", "Saturn", "Jupiter", "Uranus"], 
+        answer: "Saturn", 
+        trivia: "Saturn holds the record with 146 confirmed moons — more than any other planet."
+    },
+    { 
+        question: "What causes a lunar eclipse?", 
+        choices: ["Earth’s shadow blocks the Moon", "The Moon moves between Earth and the Sun", "The Moon disappears behind the Sun", "Earth blocks the Sun's light"], 
+        answer: "Earth’s shadow blocks the Moon", 
+        trivia: "A lunar eclipse happens when Earth moves between the Sun and the Moon, casting a shadow on the Moon."
+    },
+    { 
+        question: "What is a supernova?", 
+        choices: ["A new star forming", "A dying star exploding", "A black hole forming", "A comet hitting a star"], 
+        answer: "A dying star exploding", 
+        trivia: "A supernova is the massive explosion of a star at the end of its life cycle, releasing incredible energy."
+    },
+    { 
+        question: "Which planet has a giant storm called the 'Great Dark Spot'?", 
+        choices: ["Mars", "Neptune", "Jupiter", "Uranus"], 
+        answer: "Neptune", 
+        trivia: "Neptune’s 'Great Dark Spot' was a massive storm, similar to Jupiter’s Great Red Spot."
+    },
+    { 
+        question: "What is the main component of the Sun?", 
+        choices: ["Oxygen", "Carbon", "Hydrogen", "Helium"], 
+        answer: "Hydrogen", 
+        trivia: "The Sun is mostly made of hydrogen, which it converts into helium through nuclear fusion to produce energy."
+    },
+    { 
+        question: "Which type of galaxy is the Milky Way?", 
+        choices: ["Elliptical", "Irregular", "Spiral", "Barred spiral"], 
+        answer: "Barred spiral", 
+        trivia: "The Milky Way is a barred spiral galaxy with a central bar-shaped structure made of stars."
+    },
+    { 
+        question: "How long does it take for light from the Sun to reach Earth?", 
+        choices: ["1 second", "8 minutes", "12 hours", "1 day"], 
+        answer: "8 minutes", 
+        trivia: "Sunlight travels about 150 million kilometers to Earth in roughly 8 minutes and 20 seconds."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Solar System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: url('ok.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        /* Title Styling */
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .solar-system {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .planet-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            gap: 25px;
+        }
+
+        .planet {
+            cursor: pointer;
+            transition: transform 0.3s;
+            filter: drop-shadow(0px 0px 10px rgb(0, 0, 0));
+            position: relative;
+        }
+
+        .planet:hover {
+            transform: scale(1.2);
+        }
+
+        .sun { width: 160px; height: 160px; }
+        .mercury { width: 50px; height: 50px; }
+        .venus { width: 80px; height: 80px; }
+        .earth { width: 90px; height: 90px; }
+        .mars { width: 70px; height: 70px; }
+        .jupiter { width: 140px; height: 140px; }
+        .saturn { width: 130px; height: 130px; }
+        .uranus { width: 110px; height: 110px; }
+        .neptune { width: 100px; height: 100px; }
+
+        /* Info Box - Centered on Screen */
+        .planet-info {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            font-size: 16px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.2s;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .show-info {
+            opacity: 1;
+        }
+
+        /* Back Button Styling */
+        .back-button {
+            margin-top: 40px;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+            transition: background 0.3s, transform 0.2s;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .back-button:hover {
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transform: scale(1.1);
+            font-family: 'Press Start 2P', cursive;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="solar-system">
+        <div class="title">The Solar System</div>
+        
+        <div class="planet-container">
+            <img src="Sun.webp" class="planet sun" onmouseover="showInfo('Sun', '🌞 The center of our solar system, providing energy to all planets.')" onmouseout="hideInfo()">
+            <img src="Mercury.webp" class="planet mercury" onmouseover="showInfo('Mercury', '🪐 The Swift Planet: Fastest orbit (88 days), closest to the Sun.')" onmouseout="hideInfo()">
+            <img src="Venus.webp" class="planet venus" onmouseover="showInfo('Venus', '🔥 The Twin of Earth: Hottest planet due to its thick atmosphere.')" onmouseout="hideInfo()">
+            <img src="Earth.webp" class="planet earth" onmouseover="showInfo('Earth', '🌍 The Blue Planet: Only planet known to support life.')" onmouseout="hideInfo()">
+            <img src="Mars.webp" class="planet mars" onmouseover="showInfo('Mars', '🔴 The Red Planet: Home to the tallest volcano, Olympus Mons.')" onmouseout="hideInfo()">
+            <img src="Jupiter.webp" class="planet jupiter" onmouseover="showInfo('Jupiter', '🌀 The Giant Planet: Largest planet with a huge storm (Great Red Spot).')" onmouseout="hideInfo()">
+            <img src="Saturn.png" class="planet saturn" onmouseover="showInfo('Saturn', '💍 The Ringed Planet: Famous for its magnificent rings.')" onmouseout="hideInfo()">
+            <img src="Uranus.png" class="planet uranus" onmouseover="showInfo('Uranus', '🧊 The Ice Giant: Rotates sideways due to a massive collision.')" onmouseout="hideInfo()">
+            <img src="Neps.avif" class="planet neptune" onmouseover="showInfo('Neptune', '💨 The Windy Planet: Has the strongest winds in the solar system.')" onmouseout="hideInfo()">
+        </div>
+
+        <!-- Info Box -->
+        <div id="planet-info" class="planet-info"></div>
+
+        <!-- Back Button -->
+        <button class="back-button" onclick="goBack()">🔙 Back</button>
+    </div>
+
+    <script>
+        function showInfo(name, description) {
+            const infoBox = document.getElementById('planet-info');
+            infoBox.innerHTML = `<h2>${name}</h2><p>${description}</p>`;
+            infoBox.classList.add('show-info');
+        }
+
+        function hideInfo() {
+            const infoBox = document.getElementById('planet-info');
+            infoBox.classList.remove('show-info');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>Astronomy Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="astromode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "astromode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What planet do we live on?", 
+        choices: ["Mars", "Earth", "Venus", "Jupiter"], 
+        answer: "Earth", 
+        trivia: "Earth is the third planet from the Sun and the only known planet to support life."
+    },
+    { 
+        question: "Which planet is known as the 'Blue Planet'?", 
+        choices: ["Neptune", "Earth", "Uranus", "Mars"], 
+        answer: "Earth", 
+        trivia: "Earth is called the 'Blue Planet' because about 71% of its surface is covered in water."
+    },
+    { 
+        question: "What is the hottest planet in the Solar System?", 
+        choices: ["Mercury", "Venus", "Mars", "Jupiter"], 
+        answer: "Venus", 
+        trivia: "Venus is the hottest planet due to its thick, heat-trapping atmosphere of carbon dioxide."
+    },
+    { 
+        question: "What is the smallest planet in our Solar System?", 
+        choices: ["Mars", "Mercury", "Pluto", "Venus"], 
+        answer: "Mercury", 
+        trivia: "Mercury is the smallest planet, with a diameter of about 4,880 kilometers."
+    },
+    { 
+        question: "Which planet is famous for having a giant ring system?", 
+        choices: ["Uranus", "Jupiter", "Neptune", "Saturn"], 
+        answer: "Saturn", 
+        trivia: "Saturn's iconic rings are made of ice and rock and stretch over 280,000 kilometers wide."
+    },
+    { 
+        question: "What keeps planets in orbit around the Sun?", 
+        choices: ["The Moon", "Magnetism", "Gravity", "Solar wind"], 
+        answer: "Gravity", 
+        trivia: "The Sun’s massive gravity pulls planets into orbit around it — that’s why we stay in place!"
+    },
+    { 
+        question: "Which is the brightest object in the night sky (after the Moon)?", 
+        choices: ["Mars", "Polaris", "Venus", "Sirius"], 
+        answer: "Venus", 
+        trivia: "Venus is so bright because its thick clouds reflect sunlight efficiently, earning it the nickname 'Evening Star.'"
+    },
+    { 
+        question: "What is the largest type of star in the universe?", 
+        choices: ["Neutron star", "White dwarf", "Red giant", "Supergiant"], 
+        answer: "Supergiant", 
+        trivia: "Supergiant stars like Betelgeuse are among the largest and brightest stars in the universe."
+    },
+    { 
+        question: "How many moons does Earth have?", 
+        choices: ["1", "2", "4", "0"], 
+        answer: "1", 
+        trivia: "Earth has one Moon, which helps control ocean tides through its gravitational pull."
+    },
+    { 
+        question: "What do astronauts experience due to the lack of gravity in space?", 
+        choices: ["Super strength", "Floating", "Faster aging", "Extreme heat"], 
+        answer: "Floating", 
+        trivia: "In microgravity environments like the International Space Station, astronauts float because they’re in freefall around Earth."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Trivia</title>
+  <style>
+    body {
+      background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      color: #fff;
+    }
+
+
+    /* Remove text-align:center so we can position elements more freely */
+    .game-container {
+      position: relative;
+    }
+
+
+    .Girl img {
+      position: absolute;
+      bottom: 50px;
+      left: -1.5%;
+      transform: translateX(-50%);
+      width: 300px;
+    }
+
+
+    /* Left-align the dialogue box */
+    .dialogue-box {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      padding: 15px;
+      width: 750px;
+      margin: 180px 0 20px 60px; /* top right bottom left */
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+
+
+    /* Left-align the buttons to match the dialogue box */
+    .buttons {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-left: 50px; /* aligns with the dialogue-box left margin */
+    }
+    .btn {
+      background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+      background: linear-gradient(145deg, #ff77ff, #9050d0);
+    }
+    a.btn {
+      text-decoration: none; /* Removes underline on links */
+    }
+    .dialogue-box {
+    /* Already in your code, just ensure these properties exist */
+    margin: 180px 0 20px 50px; /* top right bottom left */
+    text-align: left;          /* left-align text inside */
+    }
+    .buttons {
+    display: flex;
+    justify-content: flex-start; /* line up buttons to the left */
+    gap: 10px;
+    margin-left: 50px;           /* same left offset as .dialogue-box */
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div class="Girl">
+      <img src="Students.png" alt="Student">
+    </div>
+    <div class="dialogue-box">
+      Hey there, fellow schoolmates! Ever wondered how the whole universe began? Well, let’s dive into the Big Bang Theory — the epic moment when everything exploded from a tiny point into the vast, incredible cosmos we know today. Stars, galaxies, even us — it all started from that one powerful event. Ready to uncover the story of how everything began? Let’s blast off and explore together!
+    </div>
+    <div class="buttons">
+      <a href="tabtrivia.html" class="btn">🔙Back</a>
+      <a href="bigmode.html" class="btn">💡Quiz</a>
+      <a href="bigbangtab.html" class="btn">Evolution of BigBang</a>
+      <a href="https://www.youtube.com/watch?v=GncYOf29uc4" class="btn">❓ What’s the Big Bang?</a>
+    </div>
+  </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Bang Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>Big Bang Theory Quiz</h1>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="big.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What does the Big Bang Theory describe?", 
+        choices: ["The birth of the Sun", "The beginning of the universe", "The formation of galaxies", "The explosion of a star"], 
+        answer: "The beginning of the universe", 
+        trivia: "The Big Bang Theory explains how the universe began from an incredibly hot, dense state around 13.8 billion years ago."
+    },
+    { 
+        question: "Who first proposed the idea that the universe is expanding?", 
+        choices: ["Isaac Newton", "Albert Einstein", "Georges Lemaître", "Edwin Hubble"], 
+        answer: "Georges Lemaître", 
+        trivia: "Belgian priest and astronomer Georges Lemaître proposed the idea of an expanding universe, which later supported the Big Bang Theory."
+    },
+    { 
+        question: "Which scientist's observations confirmed the universe is expanding?", 
+        choices: ["Albert Einstein", "Galileo Galilei", "Stephen Hawking", "Edwin Hubble"], 
+        answer: "Edwin Hubble", 
+        trivia: "In 1929, Edwin Hubble observed that galaxies are moving away from us, leading to the discovery of the universe’s expansion."
+    },
+    { 
+        question: "What is the name of the leftover radiation from the Big Bang?", 
+        choices: ["Gamma rays", "Cosmic microwave background", "Solar radiation", "X-rays"], 
+        answer: "Cosmic microwave background", 
+        trivia: "The Cosmic Microwave Background (CMB) is faint radiation from the Big Bang, discovered in 1965 by Arno Penzias and Robert Wilson."
+    },
+    { 
+        question: "What does redshift tell us about distant galaxies?", 
+        choices: ["They are moving closer", "They are rotating faster", "They are moving away", "They are shrinking"], 
+        answer: "They are moving away", 
+        trivia: "Redshift occurs when light stretches as galaxies move away, supporting the idea of an expanding universe."
+    },
+    { 
+        question: "What is believed to have existed before the Big Bang?", 
+        choices: ["A massive star", "Time and space", "A singularity", "Dark matter"], 
+        answer: "A singularity", 
+        trivia: "The Big Bang Theory suggests everything was once compressed into an infinitely small, hot, and dense point — a singularity."
+    },
+    { 
+        question: "How long after the Big Bang did the first atoms form?", 
+        choices: ["A few minutes", "A few hours", "A few years", "Immediately"], 
+        answer: "A few minutes", 
+        trivia: "Around 3 minutes after the Big Bang, temperatures dropped enough for hydrogen and helium nuclei to form."
+    },
+    { 
+        question: "Which element was most abundant right after the Big Bang?", 
+        choices: ["Oxygen", "Carbon", "Hydrogen", "Iron"], 
+        answer: "Hydrogen", 
+        trivia: "Hydrogen, the simplest and lightest element, formed first, making up about 75% of the early universe's matter."
+    },
+    { 
+        question: "What is dark energy’s role in the expanding universe?", 
+        choices: ["It slows expansion", "It pulls galaxies together", "It speeds up expansion", "It creates new galaxies"], 
+        answer: "It speeds up expansion", 
+        trivia: "Dark energy is a mysterious force believed to accelerate the universe's expansion over time."
+    },
+    { 
+        question: "What event started the Big Bang?", 
+        choices: ["An explosion", "A collision of galaxies", "A rapid expansion", "The birth of a star"], 
+        answer: "A rapid expansion", 
+        trivia: "The Big Bang wasn’t an explosion — it was a rapid expansion of space itself from a singular point."
+    },
+    { 
+        question: "What temperature was the universe moments after the Big Bang?", 
+        choices: ["Absolute zero", "Billions of degrees", "Room temperature", "1000°C"], 
+        answer: "Billions of degrees", 
+        trivia: "Just after the Big Bang, the universe’s temperature was over 1 billion degrees Celsius."
+    },
+    { 
+        question: "Which famous physicist's equations supported the idea of an expanding universe?", 
+        choices: ["Isaac Newton", "Stephen Hawking", "Albert Einstein", "Nikola Tesla"], 
+        answer: "Albert Einstein", 
+        trivia: "Einstein’s General Theory of Relativity predicted an expanding universe, though he initially resisted the idea."
+    },
+    { 
+        question: "What is inflation in the Big Bang Theory?", 
+        choices: ["The rise in cosmic temperature", "The rapid expansion just after the Big Bang", "The increase in galaxies", "The cooling of the universe"], 
+        answer: "The rapid expansion just after the Big Bang", 
+        trivia: "Cosmic inflation is a brief period of extremely rapid expansion that occurred fractions of a second after the Big Bang."
+    },
+    { 
+        question: "What is the universe’s ultimate fate according to the Big Freeze theory?", 
+        choices: ["It will collapse", "It will expand forever and cool down", "It will explode again", "It will turn into a black hole"], 
+        answer: "It will expand forever and cool down", 
+        trivia: "The Big Freeze predicts the universe will expand indefinitely, eventually becoming cold and dark as stars burn out."
+    },
+    { 
+        question: "Which scientist helped develop the theory of cosmic inflation?", 
+        choices: ["Carl Sagan", "Alan Guth", "Stephen Hawking", "Roger Penrose"], 
+        answer: "Alan Guth", 
+        trivia: "Physicist Alan Guth proposed the idea of cosmic inflation in the 1980s to explain the uniformity of the universe."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 2000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Bang Timeline</title>
+    <style>
+        body {
+            background: url('uni.webp') no-repeat center center fixed;
+            background-size: 90%; /* Reduced from 'cover' to 90% */
+            background-color: black; /* Fallback color */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 370px;
+            position: relative; /* Needed for absolute positioning of the back button */
+        }
+        .timeline {
+            position: relative;
+            width: 80%;
+            margin: 50px auto;
+            border-top: 4px solid rgb(0, 0, 0);
+            padding-top: 50px;
+        }
+        .phase {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgb(0, 0, 0);
+            color: rgb(255, 250, 250);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .phase:hover {
+            transform: scale(1.2);
+        }
+        .info {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            border: 2px solid white;
+            text-align: left;
+        }
+        .close-btn {
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        /* Back Button Styling */
+        .back-button {
+            position: absolute; /* Position it relative to the body */
+            top: 200px; /* Adjust as needed for vertical position */
+            left: 50px; /* Adjust as needed for horizontal position */
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+            transition: background 0.3s, transform 0.2s;
+            font-family: 'Press Start 2P', cursive;
+            text-align: left; /* Align text to the left within the button */
+        }
+
+        .back-button:hover {
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transform: scale(1.1);
+            font-family: 'Press Start 2P', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline">
+        <div class="phase" style="top: 50px; left: 5%;" onclick="showInfo(1)">1</div>
+        <div class="phase" style="top: -50px; left: 20%;" onclick="showInfo(2)">2</div>
+        <div class="phase" style="top: 50px; left: 35%;" onclick="showInfo(3)">3</div>
+        <div class="phase" style="top: -50px; left: 50%;" onclick="showInfo(4)">4</div>
+        <div class="phase" style="top: 50px; left: 65%;" onclick="showInfo(5)">5</div>
+        <div class="phase" style="top: -50px; left: 80%;" onclick="showInfo(6)">6</div>
+        <div class="phase" style="top: 50px; left: 95%;" onclick="showInfo(7)">7</div>
+    </div>
+
+    <div id="infoBox" class="info">
+        <p id="infoText"></p>
+        <button class="close-btn" onclick="closeInfo()">Close</button>
+    </div>
+
+    <button class="back-button" onclick="goBack()">🔙 Back</button>
+
+    <script>
+        const phaseData = {
+            1: "Time: 10⁻⁴³ sec\nTemperature: 10³²°C\nThe cosmos goes through a superfast 'inflation', expanding from the size of an atom to that of a grapefruit in a tiny fraction of a second.",
+            2: "Time: 10⁻³² sec\nTemperature: 10²⁷°C\nPost-inflation, the universe is a seething, hot soup of electrons, quarks, and other particles.",
+            3: "Time: 10⁻⁶ sec\nTemperature: 10¹³°C\nA rapidly cooling cosmos permits quarks to clump into protons and neutrons.",
+            4: "Time: 3 min\nTemperature: 10⁸°C\nStill too hot to form into atoms, charged electrons and protons prevent light from shining; the universe is a superhot fog.",
+            5: "Time: 300,000 yrs\nTemperature: 10,000°C\nElectrons combine with protons and neutrons to form atoms, mostly hydrogen and helium. Light can finally shine.",
+            6: "Time: 1 billion yrs\nTemperature: -200°C\nGravity makes hydrogen and helium gas coalesce to form the giant clouds that will become galaxies; smaller clumps of gas collapse to form the first stars.",
+            7: "Time: 15 billion yrs\nTemperature: -270°C\nAs galaxies cluster together under gravity, the first stars die and spew heavy elements into space; those will eventually form into new stars and planets."
+        };
+
+        function showInfo(phase) {
+            document.getElementById('infoText').innerText = phaseData[phase];
+            document.getElementById('infoBox').style.display = 'block';
+        }
+
+        function closeInfo() {
+            document.getElementById('infoBox').style.display = 'none';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>BigBang Theory Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="bigmode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "bigmode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What does the Big Bang Theory explain?", 
+        choices: ["Earth", "Universe", "Stars", "Planets"], 
+        answer: "Universe", 
+        trivia: "The Big Bang Theory explains how the universe began and expanded from a single point."
+    },
+    { 
+        question: "Approximately how old is the universe?", 
+        choices: ["4.5B years", "10M years", "13.8B years", "100B years"], 
+        answer: "13.8B years", 
+        trivia: "Scientists estimate that the universe is about 13.8 billion years old."
+    },
+    { 
+        question: "What is the universe mostly made of?", 
+        choices: ["Atoms", "Stars", "Dark energy", "Planets"], 
+        answer: "Dark energy", 
+        trivia: "Dark energy makes up about 68% of the universe, causing its expansion."
+    },
+    { 
+        question: "What element was formed first after the Big Bang?", 
+        choices: ["Oxygen", "Carbon", "Hydrogen", "Iron"], 
+        answer: "Hydrogen", 
+        trivia: "Hydrogen was the first element created, later forming stars and galaxies."
+    },
+    { 
+        question: "What is leftover radiation from the Big Bang called?", 
+        choices: ["Infrared", "CMB", "Gamma rays", "X-rays"], 
+        answer: "CMB", 
+        trivia: "Cosmic Microwave Background (CMB) is the faint glow of radiation from the Big Bang."
+    },
+    { 
+        question: "What tool helps scientists study the universe’s expansion?", 
+        choices: ["Telescope", "Microscope", "Hubble", "Radar"], 
+        answer: "Hubble", 
+        trivia: "The Hubble Space Telescope helps observe distant galaxies moving away from us."
+    },
+    { 
+        question: "Who first proposed the Big Bang Theory?", 
+        choices: ["Newton", "Lemaître", "Einstein", "Hawking"], 
+        answer: "Lemaître", 
+        trivia: "Georges Lemaître, a Belgian priest and physicist, first suggested the theory."
+    },
+    { 
+        question: "What happens to galaxies as the universe expands?", 
+        choices: ["Shrink", "Collide", "Move apart", "Stop"], 
+        answer: "Move apart", 
+        trivia: "Galaxies move farther apart due to the universe's continuous expansion."
+    },
+    { 
+        question: "What is the name of the theory opposite to the Big Bang?", 
+        choices: ["Big Crunch", "Steady State", "Dark Matter", "Redshift"], 
+        answer: "Steady State", 
+        trivia: "The Steady State Theory argued that the universe always existed, but it was disproven."
+    },
+    { 
+        question: "What force caused the universe to expand?", 
+        choices: ["Gravity", "Electromagnetism", "Dark energy", "Friction"], 
+        answer: "Dark energy", 
+        trivia: "Dark energy is responsible for the universe’s accelerated expansion."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>BigBang Theory Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="bigmode.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "bigmode.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+        { 
+        question: "What is the Planck time, and why is it significant?", 
+        choices: ["First atoms", "Smallest time unit", "Star formation", "Universe age"], 
+        answer: "Smallest time unit", 
+        trivia: "The Planck time (10^-43 seconds) is the smallest meaningful time scale, before which physics breaks down."
+    },
+    { 
+        question: "What key issue does the inflation theory address?", 
+        choices: ["Horizon problem", "Galaxy formation", "Supernovae", "Light speed"], 
+        answer: "Horizon problem", 
+        trivia: "The horizon problem questions why the universe has a uniform temperature despite regions never being in contact. Inflation solves this by stretching the universe rapidly."
+    },
+    { 
+        question: "What is the baryon asymmetry problem?", 
+        choices: ["Matter-antimatter imbalance", "Uneven galaxies", "Weak force strength", "Expansion rate"], 
+        answer: "Matter-antimatter imbalance", 
+        trivia: "The universe should have equal amounts of matter and antimatter, but it contains mostly matter, an unsolved mystery in physics."
+    },
+    { 
+        question: "What does the Cosmic Microwave Background (CMB) polarization indicate?", 
+        choices: ["Dark matter", "Inflation evidence", "Black holes", "Galaxy rotation"], 
+        answer: "Inflation evidence", 
+        trivia: "The polarization of the CMB suggests that rapid inflation occurred, stretching light waves and leaving detectable patterns."
+    },
+    { 
+        question: "What does 'false vacuum' describe in early universe models?", 
+        choices: ["Black hole collapse", "Quantum state", "New galaxy", "Empty space"], 
+        answer: "Quantum state", 
+        trivia: "A false vacuum is an unstable high-energy state that can decay, triggering rapid expansion (inflation)."
+    },
+    { 
+        question: "When did Big Bang nucleosynthesis occur?", 
+        choices: ["10^-43 sec", "3-20 min", "1 billion years", "After galaxies"], 
+        answer: "3-20 min", 
+        trivia: "Big Bang nucleosynthesis happened a few minutes after the Big Bang, forming light elements like hydrogen and helium."
+    },
+    { 
+        question: "Which discovery confirmed the Cosmic Microwave Background?", 
+        choices: ["Redshift data", "Penzias & Wilson", "Kepler’s laws", "Relativity"], 
+        answer: "Penzias & Wilson", 
+        trivia: "In 1964, Arno Penzias and Robert Wilson detected unexpected background radiation, later identified as the CMB, a key proof of the Big Bang."
+    },
+    { 
+        question: "Which fundamental force separated first after the Big Bang?", 
+        choices: ["Gravity", "Electromagnetism", "Strong force", "Weak force"], 
+        answer: "Gravity", 
+        trivia: "Gravity was the first force to separate from the others, influencing how matter clumped to form galaxies."
+    },
+    { 
+        question: "What does the Ekpyrotic model propose?", 
+        choices: ["Cyclic universe", "Black hole replacement", "No inflation", "Steady-State"], 
+        answer: "Cyclic universe", 
+        trivia: "The Ekpyrotic model suggests the universe undergoes repeated cycles of expansion and contraction instead of originating from a singularity."
+    },
+    { 
+        question: "What would happen if the universe’s expansion rate was slightly different?", 
+        choices: ["Collapse or expand too fast", "Stronger CMB", "No black holes", "Expansion stops"], 
+        answer: "Collapse or expand too fast", 
+        trivia: "If the universe expanded too quickly, galaxies wouldn’t form. If it expanded too slowly, it would collapse back into a singularity."
+    }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+
+        function showResults() {
+            let scoreCategory = "";
+
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+
+        function goHome() {
+            location.reload();
+        }
+
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Quiz</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            background: url('TableTriviaBg.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            width: 100px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 120px; /* Adjust position */
+    left: 5.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+.clickable-logo {
+    position: absolute;
+    bottom: 280px; /* Adjust position */
+    left: -21.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+.clickable-logo img {
+    width: 120px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+.clickable-logo img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>BigBang Theory Quiz</h1>
+           
+            <!-- Clickable Image -->
+            <div class="clickable-image">
+<img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+
+
+</div>
+<script>
+function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "bigmain.html"; // Change to the actual exit page
+    }
+}
+</script>
+            </div>
+            <!--Logo-->
+            <div class="clickable-logo">
+                <img src="trivia.png" alt="Logo">
+                </div>
+
+            <button class="menu-btn" onclick="chooseCategory('bigbangeasy.html')">Easy</button>
+            <button class="menu-btn" onclick="chooseCategory('bigbangmed.html')">Madium</button>
+            <button class="menu-btn" onclick="chooseCategory('bigbangard.html')">Hard</button>
+            </div>
+            </div>
+</body>
+<script>
+     function chooseCategory(page) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = page;
+            }, 700);
+        }
+</script>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Customer's Service - Computer Scavenger</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Basic Styling */
+      body {
+        min-height: 100vh;
+        width: 100%;
+        background: url('TABLETriviaBG.jpg');
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+      .container {
+        max-width: 1100px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        padding: 40px 60px 30px 40px;
+      }
+
+      .container .content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .container .content .left-side {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 15px;
+        position: relative;
+      }
+
+      .content .left-side::before {
+        content: "";
+        position: absolute;
+        height: 70%;
+        width: 2px;
+        right: -15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .content .left-side .details {
+        margin: 14px;
+        text-align: center;
+      }
+
+      .content .left-side .details i {
+        font-size: 30px;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      .content .left-side .details .topic {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .content .left-side .details .text-one,
+      .content .left-side .details .text-two {
+        font-size: 14px;
+        color: #afafb6;
+      }
+
+      .container .content .right-side {
+        width: 75%;
+        margin-left: 75px;
+      }
+
+      .content .right-side .topic-text {
+        font-size: 23px;
+        font-weight: 600;
+        color: white;
+      }
+
+      .right-side .input-box {
+        height: 55px;
+        width: 100%;
+        margin: 12px 0;
+      }
+
+      .right-side .input-box input,
+      .right-side .input-box textarea {
+        height: 100%;
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border-radius: 20px;
+        padding: 0 15px;
+        resize: none;
+        box-shadow: 1px 1px 1px 1px whitesmoke;
+      }
+
+      .right-side .message-box {
+        min-height: 110px;
+      }
+
+      .right-side .input-box textarea {
+        padding-top: 10px;
+      }
+
+      /* Button Styling */
+      .right-side .button {
+        display: inline-block;
+        margin-top: 12px;
+      }
+
+      .button input[type="button"] {
+        color: #fff;
+        font-size: 18px;
+        outline: none;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 40px;
+        background: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        width: 140px;
+        transition: all 0.3s ease;
+      }
+
+      .button input[type="button"]:hover {
+        background: rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 0px 2px #fff;
+        animation: bounce 0.5s ease-in-out;
+      }
+
+      @media (max-width: 950px) {
+        .container {
+          width: 90%;
+          padding: 30px 40px 40px 35px;
+        }
+
+        .container .content .right-side {
+          width: 75%;
+          margin-left: 55px;
+        }
+      }
+
+      @media (max-width: 820px) {
+        .container {
+          margin: 40px 0;
+          height: 100%;
+        }
+
+        .container .content {
+          flex-direction: column-reverse;
+        }
+
+        .container .content .left-side {
+          width: 100%;
+          flex-direction: row;
+          margin-top: 40px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .container .content .left-side::before {
+          display: none;
+        }
+
+        .container .content .right-side {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="content">
+        <!-- Left Side (Contact Info) -->
+        <div class="left-side">
+          <div class="address details">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="topic">Address</div>
+            <div class="text-one">Misa De Gallo, Greater Lagro</div>
+            <div class="text-two">Quezon City, Metro Manila</div>
+          </div>
+          <div class="phone details">
+            <i class="fas fa-phone-alt"></i>
+            <div class="topic">Phone</div>
+            <div class="text-one">+09123456789</div>
+          </div>
+          <div class="email details">
+            <i class="fas fa-envelope"></i>
+            <div class="topic">Email</div>
+            <div class="text-one">support.tabletrivia@gmail.com</div>
+          </div>
+        </div>
+
+        <!-- Right Side (Form) -->
+        <div class="right-side">
+          <div class="topic-text">Send us a message:</div>
+          <p>If you have any concerns or feedback, let us know!</p>
+          <form onsubmit="return false;">
+            <div class="input-box">
+              <input type="text" id="name" placeholder="Enter your name" required />
+            </div>
+            <div class="input-box">
+              <input type="text" id="email" placeholder="Enter your email" required />
+            </div>
+            <div class="input-box message-box">
+              <textarea placeholder="Enter your message" required></textarea>
+            </div>
+            <div class="button">
+              <input type="button" onclick="document.location='settingstab.html'" value="Back" />
+              <input type="button" onclick="message()" id="submit" value="Send Now" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function message() {
+        let name = document.getElementById("name").value;
+        if (name) {
+          alert(`Hello ${name}, your feedback has been sent!`);
+          document.querySelector("form").reset(); // Reset form after sending
+        } else {
+          alert("Please enter your name before sending.");
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('TABLETRIVIABG.webp') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .logo {
+            width: 5400px;
+            height: auto;
+            margin-bottom: 20px;
+            position: absolute;
+            top: 30%;
+        }
+
+        .loading-container {
+            width: 100%;
+            position: absolute;
+            bottom: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .loading-bar {
+            width: 700px;
+            height: 20px;
+            border: 3px solid #A67C52;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #A45DE2, #2E1A47);
+            animation: load 3s linear forwards;
+        }
+
+        @keyframes load {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+    </style>
+</head>
+<body>
+    <img src="trivia.png"width=530px"><br><br><br>
+    <div class="loading-container" id="loadingScreen">
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("loadingScreen").classList;
+            setTimeout(() => {
+                window.location.href = "tabtrivia.html";
+            }, 1000);
+        }, 3000);
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Trivia</title>
+  <style>
+    body {
+      background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      color: #fff;
+    }
+
+    /* Remove text-align:center so we can position elements more freely */
+    .game-container {
+      position: relative;
+    }
+
+    .Girl img {
+      position: absolute;
+      bottom: 50px;
+      left: -1.5%;
+      transform: translateX(-50%);
+      width: 300px;
+    }
+
+    /* Left-align the dialogue box */
+    .dialogue-box {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      padding: 15px;
+      width: 837px;
+      margin: 180px 0 20px 60px; /* top right bottom left */
+      text-align: left;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+
+    /* Left-align the buttons to match the dialogue box */
+    .buttons {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-left: 50px; /* aligns with the dialogue-box left margin */
+    }
+
+    .btn {
+      background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+      background: linear-gradient(145deg, #ff77ff, #9050d0);
+    }
+
+    a.btn {
+      text-decoration: none; /* Removes underline on links */
+    }
+
+    .dialogue-box {
+    /* Already in your code, just ensure these properties exist */
+    margin: 180px 0 20px 50px; /* top right bottom left */
+    text-align: left;          /* left-align text inside */
+    }
+
+    .buttons {
+    display: flex;
+    justify-content: flex-start; /* line up buttons to the left */
+    gap: 10px;
+    margin-left: 50px;           /* same left offset as .dialogue-box */
+    }
+
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div class="Girl">
+      <img src="Students.png" alt="Student">
+    </div>
+    <div class="dialogue-box">
+        Hey there, fellow schoolmates! Have you ever wondered what everything around us — even you — is made of? It all comes down to the Elements of the Periodic Table! From the air we breathe (Oxygen) to the metal in our phones (Aluminum), each element has a special role in building our world. Let’s dive into the table of elements and discover the tiny building blocks that make up everything in the universe. Ready to explore? Let’s go!
+    </div>
+    <div class="buttons">
+      <a href="tabtrivia.html" class="btn">🔙Back</a>
+      <a href="periodicmed.html" class="btn">💡Quiz</a>
+      <a href="perioditable.html" class="btn">Elements of the Periodic Table</a>
+      <a href="https://www.youtube.com/watch?v=hePb00CqvP0" class="btn">❓ What is Elements of the Periodic Table?</a>
+    </div>
+  </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>The Periodic Table Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="periodicmed.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "periodicmed.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+            { question: "What is the first element on the periodic table?", choices: ["Oxygen", "Carbon", "Hydrogen", "Helium"], answer: "Hydrogen", trivia: "Hydrogen is the lightest and most abundant element in the universe!" },
+            { question: "What symbol represents oxygen?", choices: ["O", "Ox", "O2", "O3"], answer: "O", trivia: "Oxygen's symbol is simply 'O' — it's essential for breathing." },
+            { question: "What is the heaviest naturally occurring element?", choices: ["Uranium", "Lead", "Gold", "Iron"], answer: "Uranium", trivia: "Uranium (U) is the heaviest naturally found element, used in nuclear energy." },
+            { question: "What is the symbol for gold?", choices: ["G", "Go", "Au", "Ag"], answer: "Au", trivia: "Gold’s symbol 'Au' comes from the Latin word 'Aurum,' meaning 'shining dawn.'" },
+            { question: "What is the most abundant element in the Earth's crust?", choices: ["Carbon", "Iron", "Oxygen", "Silicon"], answer: "Oxygen", trivia: "Oxygen makes up nearly half of the Earth’s crust!" },
+            { question: "What is the lightest metal?", choices: ["Aluminum", "Magnesium", "Lithium", "Sodium"], answer: "Lithium", trivia: "Lithium is so light it can float on water — it’s also used in batteries." },
+            { question: "What is the atomic number of carbon?", choices: ["4", "5", "6", "7"], answer: "6", trivia: "Carbon’s atomic number is 6 — it's the backbone of all living things!" },
+            { question: "Which gas makes up most of the air we breathe?", choices: ["Oxygen", "Carbon dioxide", "Nitrogen", "Helium"], answer: "Nitrogen", trivia: "Around 78% of the air is nitrogen — oxygen is only about 21%!" },
+            { question: "What element has the symbol 'Fe'?", choices: ["Gold", "Fluorine", "Iron", "Zinc"], answer: "Iron", trivia: "Fe stands for 'Ferrum,' the Latin word for iron — a key part of steel." },
+            { question: "Which element is a noble gas?", choices: ["Chlorine", "Argon", "Bromine", "Phosphorus"], answer: "Argon", trivia: "Argon is a noble gas — it’s colorless, odorless, and doesn’t react easily." },
+            // Add more questions for elements 1 to 118
+            { question: "What is the chemical symbol for Hydrogen?", choices: ["H", "He", "O", "N"], answer: "H", trivia: "Hydrogen is the most abundant element in the universe." },
+            { question: "What is the chemical symbol for Helium?", choices: ["H", "He", "O", "N"], answer: "He", trivia: "Helium is the second lightest element and is used in balloons." },
+            { question: "What is the chemical symbol for Lithium?", choices: ["Li", "Be", "B", "Na"], answer: "Li", trivia: "Lithium is used in rechargeable batteries." },
+            { question: "What is the chemical symbol for Beryllium?", choices: ["Be", "Mg", "Ca", "Sr"], answer: "Be", trivia: "Beryllium is used in aerospace components." },
+            { question: "What is the chemical symbol for Boron?", choices: ["B", "C", "N", "O"], answer: "B", trivia: "Boron is used in glass and ceramics." },
+            { question: "What is the chemical symbol for Carbon?", choices: ["C", "N", "O", "P"], answer: "C", trivia: "Carbon is the basis of all known life." },
+            { question: "What is the chemical symbol for Nitrogen?", choices: ["N", "O", "C", "H"], answer: "N", trivia: "Nitrogen is essential for plant growth." },
+            { question: "What is the chemical symbol for Oxygen?", choices: ["O", "N", "C", "H"], answer: "O", trivia: "Oxygen is produced by plants during photosynthesis." },
+            { question: "What is the chemical symbol for Fluorine?", choices: ["F", "Cl", "Br", "I"], answer: "F", trivia: "Fluorine is used in toothpaste to prevent cavities." },
+            { question: "What is the chemical symbol for Neon?", choices: ["Ne", "Ar", "Kr", "Xe"], answer: "Ne", trivia: "Neon is used in high-voltage indicators." },
+            { question: "What is the chemical symbol for Gold?", choices: ["Au", "Ag", "Fe", "Pb"], answer: "Au", trivia: "Gold is used in jewelry and electronics." },
+            { question: "What is the chemical symbol for Silver?", choices: ["Ag", "Au", "Fe", "Cu"], answer: "Ag", trivia: "Silver is used in photography and jewelry." },
+            { question: "What is the chemical symbol for Iron?", choices: ["Fe", "Ir", "Au", "Ag"], answer: "Fe", trivia: "Iron is essential for blood production in humans." },
+            { question: "What is the chemical symbol for Sodium?", choices: ["Na", "K", "Ca", "Mg"], answer: "Na", trivia: "Sodium is important for maintaining fluid balance in the body." },
+            { question: "What is the chemical symbol for Potassium?", choices: ["K", "P", "Na", "Ca"], answer: "K", trivia: "Potassium is vital for heart function." },
+            { question: "What is the chemical symbol for Uranium?", choices: ["U", "Ur", "Un", "Uu"], answer: "U", trivia: "Uranium is used as fuel in nuclear reactors." },
+            { question: "What is the chemical symbol for Mercury?", choices: ["Hg", "Me", "Mn", "Mg"], answer: "Hg", trivia: "Mercury is used in thermometers and barometers." },
+            { question: "What is the chemical symbol for Calcium?", choices: ["Ca", "C", "Cl", "Co"], answer: "Ca", trivia: "Calcium is important for bone health." },
+            { question: "What is the chemical symbol for Barium?", choices: ["Ba", "B", "Bi", "Br"], answer: "Ba", trivia: "Barium is used in medical imaging." },
+            { question: "What is the chemical symbol for Radon?", choices: ["Rn", "Ra", "Rd", "Re"], answer: "Rn", trivia: "Radon is a radioactive gas that can accumulate in homes." },
+            { question: "What is the chemical symbol for Argon?", choices: ["Ar", "Ag", "Au", "Al"], answer: "Ar", trivia: "Argon is used in light bulbs and welding." },
+            { question: "What is the chemical symbol for Zinc?", choices: ["Zn", "Z", "Zr", "Au"], answer: "Zn", trivia: "Zinc is important for immune function." },
+            { question: "What is the chemical symbol for Chlorine?", choices: ["Cl", "C", "Ca", "Co"], answer: "Cl", trivia: "Chlorine is used in swimming pools to kill bacteria." },
+            { question: "What is the chemical symbol for Iodine?", choices: ["I", "Ir", "In", "Id"], answer: "I", trivia: "Iodine is used in antiseptics and disinfectants." }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+        function showResults() {
+            let scoreCategory = "";
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+        function goHome() {
+            location.reload();
+        }
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>The Periodic Table Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="periodicmed.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "periodicmed.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+            { question: "Which element has the highest melting point?", choices: ["Carbon", "Tungsten", "Platinum", "Titanium"], answer: "Tungsten", trivia: "Tungsten has an incredible melting point of 3422°C — that’s why it's used in light bulb filaments and rocket engines!" },
+            { question: "What is the rarest naturally occurring element on Earth?", choices: ["Francium", "Astatine", "Rhodium", "Plutonium"], answer: "Astatine", trivia: "Astatine is so rare that less than 1 gram exists naturally on Earth at any moment!" },
+            { question: "Which noble gas has the highest atomic mass?", choices: ["Neon", "Argon", "Krypton", "Radon"], answer: "Radon", trivia: "Radon is the heaviest noble gas — it’s radioactive and can seep into basements from the ground." },
+            { question: "What element is used in atomic clocks?", choices: ["Uranium", "Cesium", "Radium", "Platinum"], answer: "Cesium", trivia: "Cesium-133 is used in atomic clocks because it vibrates at a super steady frequency — keeping time to the nanosecond!" },
+            { question: "Which element is the best conductor of electricity?", choices: ["Copper", "Silver", "Gold", "Aluminum"], answer: "Silver", trivia: "Silver conducts electricity better than any other metal, but it’s too expensive for most wiring — that’s why copper is used instead!" },
+            { question: "Which element was first discovered through spectroscopy?", choices: ["Helium", "Neon", "Lithium", "Hydrogen"], answer: "Helium", trivia: "Helium was first spotted in the Sun's spectrum before it was found on Earth — its name comes from 'Helios,' the Greek god of the Sun!" },
+            { question: "What is the densest naturally occurring element?", choices: ["Lead", "Uranium", "Osmium", "Platinum"], answer: "Osmium", trivia: "Osmium is the densest element — even denser than lead or gold. One cubic meter weighs over 22,500 kilograms!" },
+            { question: "Which synthetic element was named after a famous scientist?", choices: ["Einsteinium", "Curium", "Fermium", "All of the above"], answer: "All of the above", trivia: "Einsteinium (Einstein), Curium (Marie Curie), and Fermium (Enrico Fermi) were all named to honor legendary scientists!" },
+            { question: "Which element is liquid just a few degrees above room temperature?", choices: ["Mercury", "Gallium", "Bromine", "Rubidium"], answer: "Gallium", trivia: "Gallium melts at 29.8°C — it’s so soft, you could hold it and watch it melt in your hand (though it’s not safe to touch for long!)." },
+            { question: "What is the last element on the current periodic table?", choices: ["Livermorium", "Oganesson", "Tennessine", "Flerovium"], answer: "Oganesson", trivia: "Oganesson (Og) is element 118, named after physicist Yuri Oganessian. It’s a noble gas, but scientists believe it behaves differently from others in its group." },
+            // Add more questions for elements 1 to 118
+            { question: "What is the chemical symbol for Francium?", choices: ["Fr", "F", "Fe", "Fl"], answer: "Fr", trivia: "Francium is highly radioactive and is the least stable of the first 101 elements." },
+            { question: "What is the chemical symbol for Radium?", choices: ["Ra", "Rn", "Re", "Rb"], answer: "Ra", trivia: "Radium is used in cancer treatment." },
+            { question: "What is the chemical symbol for Plutonium?", choices: ["Pu", "Pt", "Pa", "Pb"], answer: "Pu", trivia: "Plutonium is used in nuclear reactors and weapons." },
+            { question: "What is the chemical symbol for Californium?", choices: ["Cf", "C", "Ca", "Cl"], answer: "Cf", trivia: "Californium is used in neutron moisture gauges." },
+            { question: "What is the chemical symbol for Einsteinium?", choices: ["Es", "E", "In", "Ir"], answer: "Es", trivia: "Einsteinium is named after Albert Einstein." },
+            { question: "What is the chemical symbol for Fermium?", choices: ["Fm", "Fe", "F", "Fr"], answer: "Fm", trivia: "Fermium is used in research." },
+            { question: "What is the chemical symbol for Mendelevium?", choices: ["Md", "Me", "Mn", "Mg"], answer: "Md", trivia: "Mendelevium is named after Dmitri Mendeleev." },
+            { question: "What is the chemical symbol for Nobelium?", choices: ["No", "Ne", "Nb", "Nd"], answer: "No", trivia: "Nobelium is named after Alfred Nobel." },
+            { question: "What is the chemical symbol for Lawrencium?", choices: ["Lr", "La", "Li", "Lu"], answer: "Lr", trivia: "Lawrencium is named after Ernest O. Lawrence." },
+            { question: "What is the chemical symbol for Rutherfordium?", choices: ["Rf", "Ru", "Rb", "Re"], answer: "Rf", trivia: "Rutherfordium is named after Ernest Rutherford." },
+            { question: "What is the chemical symbol for Dubnium?", choices: ["Db", "D", "Du", "Db"], answer: "Db", trivia: "Dubnium is named after Dubna, Russia." },
+            { question: "What is the chemical symbol for Seaborgium?", choices: ["Sg", "Se", "Sb", "Sc"], answer: "Sg", trivia: "Seaborgium is named after Glenn T. Seaborg." },
+            { question: "What is the chemical symbol for Bohrium?", choices: ["Bh", "B", "Br", "Bi"], answer: "Bh", trivia: "Bohrium is named after Niels Bohr." },
+            { question: "What is the chemical symbol for Hassium?", choices: ["Hs", "H", "He", "Hg"], answer: "Hs", trivia: "Hassium is named after the German state of Hesse." },
+            { question: "What is the chemical symbol for Meitnerium?", choices: ["Mt", "Me", "Mn", "Mg"], answer: "Mt", trivia: "Meitnerium is named after Lise Meitner." },
+            { question: "What is the chemical symbol for Darmstadtium?", choices: ["Ds", "D", "Db", "Dr"], answer: "Ds", trivia: "Darmstadtium is named after the city of Darmstadt." },
+            { question: "What is the chemical symbol for Roentgenium?", choices: ["Rg", "Ro", "Re", "Rn"], answer: "Rg", trivia: "Roentgenium is named after Wilhelm Röntgen." },
+            { question: "What is the chemical symbol for Copernicium?", choices: ["Cn", "Co", "Cr", "Cu"], answer: "Cn", trivia: "Copernicium is named after Nicolaus Copernicus." },
+            { question: "What is the chemical symbol for Nihonium?", choices: ["Nh", "N", "Ni", "No"], answer: "Nh", trivia: "Nihonium is named after Japan." },
+            { question: "What is the chemical symbol for Flerovium?", choices: ["Fl", "F", "Fe", "Fr"], answer: "Fl", trivia: "Flerovium is named after Georgy Flerov." },
+            { question: "What is the chemical symbol for Moscovium?", choices: ["Mc", "Mo", "M", "Mg"], answer: "Mc", trivia: "Moscovium is named after Moscow." },
+            { question: "What is the chemical symbol for Livermorium?", choices: ["Lv", "Li", "L", "La"], answer: "Lv", trivia: "Livermorium is named after Lawrence Livermore National Laboratory." },
+            { question: "What is the chemical symbol for Tennessine?", choices: ["Ts", "Te", "T", "Ti"], answer: "Ts", trivia: "Tennessine is named after the state of Tennessee." },
+            { question: "What is the chemical symbol for Oganesson?", choices: ["Og", "O", "Os", "Og"], answer: "Og", trivia: "Oganesson is a synthetic element." }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+        function showResults() {
+            let scoreCategory = "";
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+        function goHome() {
+            location.reload();
+        }
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .choices button.correct {
+            background-color: #28a745 !important;
+        }
+        .choices button.wrong {
+            background-color: #dc3545 !important;
+        }
+        .correct-answer {
+            background-color: #28a745 !important;
+        }
+        #exit-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #exit-btn:hover {
+            background-color: #cc0000;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 150px; /* Adjust position */
+    left: 6.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>The Periodic Table Quiz</h1>
+
+             <!-- Clickable Image -->
+    <div class="clickable-image">
+        <img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+    </div>
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" class="end-screen">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span></p>
+            <p id="score-category"></p>
+            <a href="periodicmed.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "periodicmed.html"; // Change to the actual exit page
+    }
+}
+    </script>
+    <script>
+        let currentQuestion = 0;
+        let score = 0;
+
+        const bigBangQuiz = [
+            { question: "What is the atomic number of helium?", choices: ["1", "2", "4", "10"], answer: "2", trivia: "Helium has two protons, making its atomic number 2 — it’s also the second lightest element." },
+            { question: "What is the symbol for potassium?", choices: ["P", "K", "Po", "Pt"], answer: "K", trivia: "Potassium’s symbol 'K' comes from 'Kalium,' its Latin name." },
+            { question: "What type of elements are on the right side of the periodic table?", choices: ["Metals", "Metalloids", "Nonmetals", "Lanthanides"], answer: "Nonmetals", trivia: "Nonmetals like oxygen and nitrogen are found on the right side of the table." },
+            { question: "Which element is known as the 'King of Metals'?", choices: ["Iron", "Gold", "Copper", "Platinum"], answer: "Gold", trivia: "Gold has been called the 'King of Metals' due to its beauty, rarity, and value." },
+            { question: "Which halogen is a liquid at room temperature?", choices: ["Fluorine", "Chlorine", "Bromine", "Iodine"], answer: "Bromine", trivia: "Bromine is a reddish-brown liquid, the only non-metal liquid at room temperature!" },
+            { question: "Which element is named after a planet?", choices: ["Marsium", "Neptunium", "Earthium", "Jupiterium"], answer: "Neptunium", trivia: "Neptunium was named after Neptune, the planet, because it comes after Uranium (named after Uranus)." },
+            { question: "Which element is essential for bones?", choices: ["Iron", "Calcium", "Carbon", "Magnesium"], answer: "Calcium", trivia: "Calcium helps build strong bones and teeth — it’s also found in chalk!" },
+            { question: "Which metal is a liquid at room temperature?", choices: ["Aluminum", "Lead", "Mercury", "Tin"], answer: "Mercury", trivia: "Mercury is the only metal that’s a liquid at room temperature — it’s also called quicksilver." },
+            { question: "What gas is used in light bulbs?", choices: ["Oxygen", "Hydrogen", "Argon", "Helium"], answer: "Argon", trivia: "Argon is used in light bulbs to stop the filament from burning out too quickly!" },
+            { question: "Which element makes diamonds?", choices: ["Carbon", "Silicon", "Oxygen", "Nitrogen"], answer: "Carbon", trivia: "Diamonds are made from carbon atoms arranged in a special structure." },
+            // Add more questions for elements 1 to 118
+            { question: "What is the chemical symbol for Lithium?", choices: ["Li", "L", "Lu", "Lt"], answer: "Li", trivia: "Lithium is used in rechargeable batteries." },
+            { question: "What is the chemical symbol for Sodium?", choices: ["Na", "S", "So", "Sd"], answer: "Na", trivia: "Sodium is essential for nerve function." },
+            { question: "What is the chemical symbol for Magnesium?", choices: ["Mg", "M", "Ma", "Me"], answer: "Mg", trivia: "Magnesium is important for muscle function." },
+            { question: "What is the chemical symbol for Aluminum?", choices: ["Al", "Au", "Ag", "Am"], answer: "Al", trivia: "Aluminum is lightweight and resistant to corrosion." },
+            { question: "What is the chemical symbol for Silicon?", choices: ["Si", "S", "Sc", "Sl"], answer: "Si", trivia: "Silicon is used in computer chips." },
+            { question: "What is the chemical symbol for Phosphorus?", choices: ["P", "Po", "Ph", "Ps"], answer: "P", trivia: "Phosphorus is essential for DNA and RNA." },
+            { question: "What is the chemical symbol for Sulfur?", choices: ["S", "Su", "Sl", "So"], answer: "S", trivia: "Sulfur is used in fertilizers." },
+            { question: "What is the chemical symbol for Chlorine?", choices: ["Cl", "C", "Ch", "Cr"], answer: "Cl", trivia: "Chlorine is used in disinfectants." },
+            { question: "What is the chemical symbol for Argon?", choices: ["Ar", "Ag", "Au", "Al"], answer: "Ar", trivia: "Argon is used in light bulbs." },
+            { question: "What is the chemical symbol for Iron?", choices: ["Fe", "Ir", "I", "In"], answer: "Fe", trivia: "Iron is essential for blood production." }
+        ];
+
+        function loadQuestion() {
+            if (currentQuestion < bigBangQuiz.length) {
+                document.getElementById("question").textContent = bigBangQuiz[currentQuestion].question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                bigBangQuiz[currentQuestion].choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+        function checkAnswer(button, choice) {
+            document.getElementById("trivia").textContent = bigBangQuiz[currentQuestion].trivia;
+            if (choice === bigBangQuiz[currentQuestion].answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === bigBangQuiz[currentQuestion].answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 5000);
+        }
+        function showResults() {
+            let scoreCategory = "";
+            if (score <= 5) {
+                scoreCategory = "Needs Improvement";
+            } else if (score <= 10) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Excellent";
+            }
+            document.getElementById("score-category").textContent = scoreCategory;
+            document.getElementById("quiz-box").classList.remove("visible");
+            document.getElementById("end-screen").classList.add("visible");
+            document.getElementById("score").textContent = score;
+        }
+        function goHome() {
+            location.reload();
+        }
+        // Start the Big Bang quiz immediately
+        loadQuestion();
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Quiz</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .quiz-box, .end-screen {
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px white;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            width: 100px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+        .clickable-image {
+    position: absolute;
+    bottom: 120px; /* Adjust position */
+    left: 5.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+.clickable-image img {
+    width: 60px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+.clickable-image img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+.clickable-logo {
+    position: absolute;
+    bottom: 280px; /* Adjust position */
+    left: -21.4%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure it's above other elements */
+    pointer-events: auto; /* Enable clicking */
+}
+.clickable-logo img {
+    width: 120px; /* Adjust size */
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+.clickable-logo img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-box" class="quiz-box visible">
+            <h1>The Periodic Table Quiz</h1>
+           
+            <!-- Clickable Image -->
+            <div class="clickable-image">
+<img src="Exit.png" alt="Clickable Image" onclick="confirmExit()">
+
+
+</div>
+<script>
+function confirmExit() {
+    if (confirm("Are you sure you want to exit the quiz?")) {
+        window.location.href = "period.html"; // Change to the actual exit page
+    }
+}
+</script>
+            </div>
+            <!--Logo-->
+            <div class="clickable-logo">
+                <img src="trivia.png" alt="Logo">
+                </div>
+
+            <button class="menu-btn" onclick="chooseCategory('periodeasy.html')">Easy</button>
+            <button class="menu-btn" onclick="chooseCategory('periodicmain.html')">Medium</button>
+            <button class="menu-btn" onclick="chooseCategory('periodhard.html')">Hard</button>
+            </div>
+            </div>
+</body>
+<script>
+     function chooseCategory(page) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = page;
+            }, 700);
+        }
+</script>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Periodic Table</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background: url('TableTriviaBG.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .table-container {
+            display: grid;
+            grid-template-columns: repeat(18, 50px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: -80px;
+        }
+
+        .tables-container {
+            display: grid;
+            grid-template-columns: repeat(18, 50px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: -20px;
+        }
+        .element {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            position: relative;
+            background-color: #6e0dd0;
+            box-shadow: 2px 2px 2px 2px black;
+        }
+
+        .element-number {
+            font-size: 10px;
+            color: #ddd;
+        }
+
+        .element:hover {
+            background-color: #6e0dd080;
+        }
+
+        .element-info {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            color: #fff;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10;
+        }
+
+        .element:hover .element-info {
+            display: block;
+        }
+
+        .spacer {
+            width: 150px;
+            height: 50px;
+            visibility: hidden;
+        }
+        .buttons {
+            display: flex;
+            justify-content: flex-start; /* line up buttons to the left */
+            gap: 10px;
+            margin-left: 100px;           /* same left offset as .dialogue-box */
+        }
+        .btn {
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+            background: linear-gradient(145deg, #ff77ff, #9050d0);
+        }
+
+        a.btn {
+            text-decoration: none; /* Removes underline on links */
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <center><h1>Interactive Periodic Table</h1></center>
+    <br>
+    <br>
+    <br>
+    <div class="table-container">
+        <!-- Row 1 -->
+        <div class="element"><span class="element-number">1</span>H<div class="element-info">Hydrogen: Atomic Mass: 1.008, Lightest element.</div></div>
+        <div class="spacer" style="grid-column: span 16"></div>
+        <div class="element"><span class="element-number">2</span>He<div class="element-info">Helium: Atomic Mass: 4.0026, Used in balloons.</div></div>
+
+        <!-- Row 2 -->
+        <div class="element"><span class="element-number">3</span>Li<div class="element-info">Lithium: Atomic Mass: 6.94, Powers batteries.</div></div>
+        <div class="element"><span class="element-number">4</span>Be<div class="element-info">Beryllium: Atomic Mass: 9.0122, Aerospace material.</div></div>
+        <div class="spacer" style="grid-column: span 10"></div>
+        <div class="element"><span class="element-number">5</span>B<div class="element-info">Boron: Atomic Mass: 10.81, Used in glass.</div></div>
+        <div class="element"><span class="element-number">6</span>C<div class="element-info">Carbon: Atomic Mass: 12.011, Essential for life.</div></div>
+        <div class="element"><span class="element-number">7</span>N<div class="element-info">Nitrogen: Atomic Mass: 14.007, Main part of air.</div></div>
+        <div class="element"><span class="element-number">8</span>O<div class="element-info">Oxygen: Atomic Mass: 15.999, Vital for respiration.</div></div>
+        <div class="element"><span class="element-number">9</span>F<div class="element-info">Fluorine: Atomic Mass: 18.998, In toothpaste.</div></div>
+        <div class="element"><span class="element-number">10</span>Ne<div class="element-info">Neon: Atomic Mass: 20.180, For bright signs.</div></div>
+
+        <!-- Row 3 -->
+        <div class="element"><span class="element-number">11</span>Na<div class="element-info">Sodium: Atomic Mass: 22.990, Found in salt.</div></div>
+        <div class="element"><span class="element-number">12</span>Mg<div class="element-info">Magnesium: Atomic Mass: 24.305, Essential mineral.</div></div>
+        <div class="spacer" style="grid-column: span 10"></div>
+        <div class="element"><span class="element-number">13</span>Al<div class="element-info">Aluminum: Atomic Mass: 26.982, Lightweight metal.</div></div>
+        <div class="element"><span class="element-number">14</span>Si<div class="element-info">Silicon: Atomic Mass: 28.085, Used in electronics.</div></div>
+        <div class="element"><span class="element-number">15</span>P<div class="element-info">Phosphorus: Atomic Mass: 30.974, Essential for DNA.</div></div>
+        <div class="element"><span class="element-number">16</span>S<div class="element-info">Sulfur: Atomic Mass: 32.06, Found in volcanoes.</div></div>
+        <div class="element"><span class="element-number">17</span>Cl<div class="element-info">Chlorine: Atomic Mass: 35.45, Disinfects water.</div></div>
+        <div class="element"><span class="element-number">18</span>Ar<div class="element-info">Argon: Atomic Mass: 39.948, Noble gas, in lights.</div></div>
+
+        <!-- Row 4 -->
+        <div class="element"><span class="element-number">19</span>K<div class="element-info">Potassium: Atomic Mass: 39.098, Essential for cells.</div></div>
+        <div class="element"><span class="element-number">20</span>Ca<div class="element-info">Calcium: Atomic Mass: 40.078, Strengthens bones.</div></div>
+        <div class="element"><span class="element-number">21</span>Sc<div class="element-info">Scandium: Atomic Mass: 44.956, Lightweight metal.</div></div>
+        <div class="element"><span class="element-number">22</span>Ti<div class="element-info">Titanium: Atomic Mass: 47.867, Strong, used in aerospace.</div></div>
+        <div class="element"><span class="element-number">23</span>V<div class="element-info">Vanadium: Atomic Mass: 50.941, Strengthens steel.</div></div>
+        <div class="element"><span class="element-number">24</span>Cr<div class="element-info">Chromium: Atomic Mass: 51.996, Shiny, resists rust.</div></div>
+        <div class="element"><span class="element-number">25</span>Mn<div class="element-info">Manganese: Atomic Mass: 54.938, Strengthens steel.</div></div>
+        <div class="element"><span class="element-number">26</span>Fe<div class="element-info">Iron: Atomic Mass: 55.845, Essential for blood.</div></div>
+        <div class="element"><span class="element-number">27</span>Co<div class="element-info">Cobalt: Atomic Mass: 58.933, Used in magnets.</div></div>
+        <div class="element"><span class="element-number">28</span>Ni<div class="element-info">Nickel: Atomic Mass: 58.693, Resists corrosion.</div></div>
+        <div class="element"><span class="element-number">29</span>Cu<div class="element-info">Copper: Atomic Mass: 63.546, Conducts electricity.</div></div>
+        <div class="element"><span class="element-number">30</span>Zn<div class="element-info">Zinc: Atomic Mass: 65.38, Prevents rust, supports immunity.</div></div>
+        <div class="element"><span class="element-number">31</span>Ga<div class="element-info">Gallium: Atomic Mass: 69.723, Melts in your hand.</div></div>
+        <div class="element"><span class="element-number">32</span>Ge<div class="element-info">Germanium: Atomic Mass: 72.630, Used in semiconductors.</div></div>
+        <div class="element"><span class="element-number">33</span>As<div class="element-info">Arsenic: Atomic Mass: 74.922, Toxic element, used in alloys.</div></div>
+        <div class="element"><span class="element-number">34</span>Se<div class="element-info">Selenium: Atomic Mass: 78.971, Helps body processes.</div></div>
+        <div class="element"><span class="element-number">35</span>Br<div class="element-info">Bromine: Atomic Mass: 79.904, Liquid at room temperature.</div></div>
+        <div class="element"><span class="element-number">36</span>Kr<div class="element-info">Krypton: Atomic Mass: 83.798, Used in high-performance lights.</div></div>
+
+        <!--Row 5-->
+         <div class="element"><span class="element-number">37</span>Rb<div class="element-info">Rubidium: Atomic Mass: 85.468, Soft, reactive metal.</div></div>
+         <div class="element"><span class="element-number">38</span>Sr<div class="element-info">Strontium: Atomic Mass: 87.62, Burns red in fireworks.</div></div>
+         <div class="element"><span class="element-number">39</span>Y<div class="element-info">Yttrium: Atomic Mass: 88.906, Used in LEDs.</div></div>
+         <div class="element"><span class="element-number">40</span>Zr<div class="element-info">Zirconium: Atomic Mass: 91.224, Resists corrosion.</div></div>
+         <div class="element"><span class="element-number">41</span>Nb<div class="element-info">Niobium: Atomic Mass: 92.906, Strengthens steel.</div></div>
+         <div class="element"><span class="element-number">42</span>Mo<div class="element-info">Molybdenum: Atomic Mass: 95.95, High melting point.</div></div>
+         <div class="element"><span class="element-number">43</span>Tc<div class="element-info">Technetium: Atomic Mass: 98, First artificially produced element.</div></div>
+         <div class="element"><span class="element-number">44</span>Ru<div class="element-info">Ruthenium: Atomic Mass: 101.07, Used in electronics.</div></div>
+         <div class="element"><span class="element-number">45</span>Rh<div class="element-info">Rhodium: Atomic Mass: 102.91, Reflective, used in jewelry.</div></div>
+         <div class="element"><span class="element-number">46</span>Pd<div class="element-info">Palladium: Atomic Mass: 106.42, Used in catalytic converters.</div></div>
+         <div class="element"><span class="element-number">47</span>Ag<div class="element-info">Silver: Atomic Mass: 107.87, Conducts electricity, used in jewelry.</div></div>
+         <div class="element"><span class="element-number">49</span>In<div class="element-info">Indium: Atomic Mass: 114.82, Used in touchscreens.</div></div>
+         <div class="element"><span class="element-number">50</span>Sn<div class="element-info">Tin: Atomic Mass: 118.71, Used in soldering.</div></div>
+         <div class="element"><span class="element-number">48</span>Cd<div class="element-info">Cadmium: Atomic Mass: 112.41, Used in batteries.</div></div>
+         <div class="element"><span class="element-number">51</span>Sb<div class="element-info">Antimony: Atomic Mass: 121.76, Used in flame retardants.</div></div>
+         <div class="element"><span class="element-number">52</span>Te<div class="element-info">Tellurium: Atomic Mass: 127.60, Used in solar panels.</div></div>
+         <div class="element"><span class="element-number">53</span>I<div class="element-info">Iodine: Atomic Mass: 126.90, Essential for thyroid health.</div></div>
+         <div class="element"><span class="element-number">54</span>Xe<div class="element-info">Xenon: Atomic Mass: 131.29, Used in high-performance lamps.</div></div>
+
+         <!--Row 6-->
+        <div class="element"><span class="element-number">55</span>Cs<div class="element-info">Cesium: Atomic Mass: 132.91, Soft, highly reactive metal.</div></div>
+        <div class="element"><span class="element-number">56</span>Ba<div class="element-info">Barium: Atomic Mass: 137.33, Used in fireworks and medical imaging.</div></div>
+        <div class="element"><span class="element-number">57</span>La<div class="element-info">Lanthanum: Atomic Mass: 138.91, Soft, malleable metal.</div></div>
+        <div class="element"><span class="element-number">72</span>Hf<div class="element-info">Hafnium: Atomic Mass: 178.49, Used in nuclear reactors.</div></div>
+        <div class="element"><span class="element-number">73</span>Ta<div class="element-info">Tantalum: Atomic Mass: 180.95, Resists corrosion.</div></div>
+        <div class="element"><span class="element-number">74</span>W<div class="element-info">Tungsten: Atomic Mass: 183.84, Highest melting point.</div></div>
+        <div class="element"><span class="element-number">75</span>Re<div class="element-info">Rhenium: Atomic Mass: 186.21, Rare, high heat resistance.</div></div>
+        <div class="element"><span class="element-number">76</span>Os<div class="element-info">Osmium: Atomic Mass: 190.23, Densest natural element.</div></div>
+        <div class="element"><span class="element-number">77</span>Ir<div class="element-info">Iridium: Atomic Mass: 192.22, Highly corrosion-resistant.</div></div>
+        <div class="element"><span class="element-number">78</span>Pt<div class="element-info">Platinum: Atomic Mass: 195.08, Precious, used in jewelry.</div></div>
+        <div class="element"><span class="element-number">79</span>Au<div class="element-info">Gold: Atomic Mass: 196.97, Valuable, used in electronics.</div></div>
+        <div class="element"><span class="element-number">80</span>Hg<div class="element-info">Mercury: Atomic Mass: 200.59, Liquid metal, toxic.</div></div>
+        <div class="element"><span class="element-number">81</span>Tl<div class="element-info">Thallium: Atomic Mass: 204.38, Highly toxic.</div></div>
+        <div class="element"><span class="element-number">82</span>Pb<div class="element-info">Lead: Atomic Mass: 207.2, Heavy metal, toxic.</div></div>
+        <div class="element"><span class="element-number">83</span>Bi<div class="element-info">Bismuth: Atomic Mass: 208.98, Low toxicity, colorful oxide.</div></div>
+        <div class="element"><span class="element-number">84</span>Po<div class="element-info">Polonium: Atomic Mass: 209, Highly radioactive.</div></div>
+        <div class="element"><span class="element-number">85</span>At<div class="element-info">Astatine: Atomic Mass: 210, Rare, radioactive.</div></div>
+        <div class="element"><span class="element-number">86</span>Rn<div class="element-info">Radon: Atomic Mass: 222, Radioactive gas.</div></div>
+
+        <!-- Row 7 (87 to 118) -->
+        <div class="element"><span class="element-number">87</span>Fr<div class="element-info">Francium: Atomic Mass: 223, Highly radioactive, very rare.</div></div>
+        <div class="element"><span class="element-number">88</span>Ra<div class="element-info">Radium: Atomic Mass: 226, Radioactive, once used in luminous paints.</div></div>
+        <div class="element"><span class="element-number">89</span>Ac<div class="element-info">Actinium: Atomic Mass: 227, Radioactive, glows in the dark.</div></div>
+        <div class="element"><span class="element-number">104</span>Rf<div class="element-info">Rutherfordium: Atomic Mass: 267, Synthetic, short-lived.</div></div>
+        <div class="element"><span class="element-number">105</span>Db<div class="element-info">Dubnium: Atomic Mass: 268, Synthetic, highly radioactive.</div></div>
+        <div class="element"><span class="element-number">106</span>Sg<div class="element-info">Seaborgium: Atomic Mass: 271, Synthetic, named after Glenn Seaborg.</div></div>
+        <div class="element"><span class="element-number">107</span>Bh<div class="element-info">Bohrium: Atomic Mass: 270, Synthetic, named after Niels Bohr.</div></div>
+        <div class="element"><span class="element-number">108</span>Hs<div class="element-info">Hassium: Atomic Mass: 277, Synthetic, named after Hesse, Germany.</div></div>
+        <div class="element"><span class="element-number">109</span>Mt<div class="element-info">Meitnerium: Atomic Mass: 278, Synthetic, named after Lise Meitner.</div></div>
+        <div class="element"><span class="element-number">110</span>Ds<div class="element-info">Darmstadtium: Atomic Mass: 281, Synthetic, named after Darmstadt, Germany.</div></div>
+        <div class="element"><span class="element-number">111</span>Rg<div class="element-info">Roentgenium: Atomic Mass: 282, Synthetic, named after Wilhelm Röntgen.</div></div>
+        <div class="element"><span class="element-number">112</span>Cn<div class="element-info">Copernicium: Atomic Mass: 285, Synthetic, named after Copernicus.</div></div>
+        <div class="element"><span class="element-number">113</span>Nh<div class="element-info">Nihonium: Atomic Mass: 286, Synthetic, named after Japan.</div></div>
+        <div class="element"><span class="element-number">114</span>Fl<div class="element-info">Flerovium: Atomic Mass: 289, Synthetic, named after Flerov Laboratory.</div></div>
+        <div class="element"><span class="element-number">115</span>Mc<div class="element-info">Moscovium: Atomic Mass: 288, Synthetic, named after Moscow.</div></div>
+        <div class="element"><span class="element-number">116</span>Lv<div class="element-info">Livermorium: Atomic Mass: 293, Synthetic, named after Livermore Lab.</div></div>
+        <div class="element"><span class="element-number">117</span>Ts<div class="element-info">Tennessine: Atomic Mass: 294, Synthetic, named after Tennessee.</div></div>
+        <div class="element"><span class="element-number">118</span>Og<div class="element-info">Oganesson: Atomic Mass: 294, Synthetic, named after Yuri Oganessian.</div></div>
+    </div>
+    <br>
+    <br>
+    <div class="tables-container">
+        <!--Row 8-->
+        <div class="spacer" style="grid-column: span 3"></div>
+         <div class="element">Ce<span class="element-number">58</span><div class="element-info">Cerium: Atomic Mass: 140.116, Used in catalysts.</div></div>
+         <div class="element">Pr<span class="element-number">59</span><div class="element-info">Praseodymium: Atomic Mass: 140.907, Used in magnets.</div></div>
+         <div class="element">Nd<span class="element-number">60</span><div class="element-info">Neodymium: Atomic Mass: 144.242, Used in strong magnets.</div></div>
+         <div class="element">Pm<span class="element-number">61</span><div class="element-info">Promethium: Atomic Mass: 145, Radioactive, used in luminous paint.</div></div>
+         <div class="element">Sm<span class="element-number">62</span><div class="element-info">Samarium: Atomic Mass: 150.36, Used in magnets and lasers.</div></div>
+         <div class="element">Eu<span class="element-number">63</span><div class="element-info">Europium: Atomic Mass: 151.964, Used in phosphorescent materials.</div></div>
+         <div class="element">Gd<span class="element-number">64</span><div class="element-info">Gadolinium: Atomic Mass: 157.25, Used in MRI contrast agents.</div></div>
+         <div class="element">Tb<span class="element-number">65</span><div class="element-info">Terbium: Atomic Mass: 158.925, Used in solid-state devices.</div></div>
+         <div class="element">Dy<span class="element-number">66</span><div class="element-info">Dysprosium: Atomic Mass: 162.500, Used in magnets.</div></div>
+         <div class="element">Ho<span class="element-number">67</span><div class="element-info">Holmium: Atomic Mass: 164.930, Used in lasers.</div></div>
+         <div class="element">Er<span class="element-number">68</span><div class="element-info">Erbium: Atomic Mass: 167.259, Used in fiber optics.</div></div>
+         <div class="element">Tm<span class="element-number">69</span><div class="element-info">Thulium: Atomic Mass: 168.934, Used in medical imaging.</div></div>
+         <div class="element">Yb<span class="element-number">70</span><div class="element-info">Ytterbium: Atomic Mass: 173.04, Used in lasers.</div></div>
+         <div class="element">Lu<span class="element-number">71</span><div class="element-info">Lutetium: Atomic Mass: 174.966, Used in catalysts.</div></div><br>
+         
+         <!--Row 9-->
+         <div class="spacer" style="grid-column: span 3"></div>
+         <div class="element">Th<span class="element-number">90</span><div class="element-info">Thorium: Atomic Mass: 232.038, Used in nuclear reactors.</div></div>
+         <div class="element">Pa<span class="element-number">91</span><div class="element-info">Protactinium: Atomic Mass: 231.035, Used in nuclear research.</div></div>
+         <div class="element">U<span class="element-number">92</span><div class="element-info">Uranium: Atomic Mass: 238.028, Used as fuel in nuclear reactors.</div></div>
+         <div class="element">Np<span class="element-number">93</span><div class="element-info">Neptunium: Atomic Mass: 237, Used in nuclear reactors.</div></div>
+         <div class="element">Pu<span class="element-number">94</span><div class="element-info">Plutonium: Atomic Mass: 244, Used in nuclear weapons and reactors.</div></div>
+         <div class="element">Am<span class="element-number">95</span><div class="element-info">Americium: Atomic Mass: 243, Used in smoke detectors.</div></div>
+         <div class="element">Cm<span class="element-number">96</span><div class="element-info">Curium: Atomic Mass: 247, Used in nuclear research.</div></div>
+         <div class="element">Bk<span class="element-number">97</span><div class="element-info">Berkelium: Atomic Mass: 247, Used in scientific research.</div></div>
+         <div class="element">Cf<span class="element-number">98</span><div class="element-info">Californium: Atomic Mass: 251, Used in neutron sources.</div></div>
+         <div class="element">Es<span class="element-number">99</span><div class="element-info">Einsteinium: Atomic Mass: 252, Used in scientific research.</div></div>
+         <div class="element">Fm<span class="element-number">100</span><div class="element-info">Fermium: Atomic Mass: 257, Used in scientific research.</div></div>
+         <div class="element">Md<span class="element-number">101</span><div class="element-info">Mendelevium: Atomic Mass: 258, Used in scientific research.</div></div>
+         <div class="element">No<span class="element-number">102</span><div class="element-info">Nobelium: Atomic Mass: 259, Used in scientific research.</div></div>
+         <div class="element">Lr<span class="element-number">103</span><div class="element-info">Lawrencium: Atomic Mass: 262, Used in scientific research.</div></div>
+
+    </div>
+    <br>
+    <div class="buttons">
+        <a href="period.html" class="btn">🔙Back</a>
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Quiz</title>
+</head>
+<body>
+    <h1>Periodic Quiz</h1>
+    <form id="quizForm">
+        <div>
+            <label>1. What is the role of carbon in life on Earth?</label>
+            <input type="text" name="question1" required>
+        </div>
+        <div>
+            <label>2. How do elements like iron and nickel form in stars?</label>
+            <input type="text" name="question2" required>
+        </div>
+        <div>
+            <label>3. What is the significance of oxygen in the universe?</label>
+            <input type="text" name="question3" required>
+        </div>
+        <div>
+            <label>4. How do supernovae contribute to the creation of new elements?</label>
+            <input type="text" name="question4" required>
+        </div>
+    </form>
+    <div class="container">
+        <h1>Periodic Table Quiz</h1>
+        <div id="start-screen" class="visible">
+            <button onclick="startQuiz()">Start Quiz</button>
+        </div>
+        <div id="quiz-box" style="display:none;">
+            <p id="question"></p>
+            <div id="choices" class="choices"></div>
+            <p id="trivia"></p>
+        </div>
+        <div id="end-screen" style="display:none;">
+            <h2>Quiz Completed!</h2>
+            <p>Your Score: <span id="score"></span> / <span id="total-questions"></span></p>
+            <p id="score-category"></p>
+            <a href="periodmed.html"><button id="exit-btn">Exit</button></a>
+        </div>
+    </div>
+    <script>
+        let userCoins = 20; // Set maximum coins required to unlock the next level
+
+        function checkCoins() {
+            if (userCoins < 15) {
+                alert("Oh no! Please try again to get more coins to unlock the new level.");
+                return false; // Not enough coins
+            }
+            return true; // Enough coins
+        }
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const periodicQuiz = [
+            { question: "What is the chemical symbol for Hydrogen?", choices: ["H", "He", "O", "N"], answer: "H", trivia: "Hydrogen is the most abundant element in the universe." },
+            { question: "What is the chemical symbol for Helium?", choices: ["H", "He", "O", "N"], answer: "He", trivia: "Helium is the second lightest element and is used in balloons." },
+            { question: "What is the chemical symbol for Lithium?", choices: ["Li", "Be", "B", "Na"], answer: "Li", trivia: "Lithium is used in rechargeable batteries." },
+            { question: "What is the chemical symbol for Beryllium?", choices: ["Be", "Mg", "Ca", "Sr"], answer: "Be", trivia: "Beryllium is used in aerospace components." },
+            { question: "What is the chemical symbol for Boron?", choices: ["B", "C", "N", "O"], answer: "B", trivia: "Boron is used in glass and ceramics." },
+            { question: "What is the chemical symbol for Carbon?", choices: ["C", "N", "O", "P"], answer: "C", trivia: "Carbon is the basis of all known life." },
+            { question: "What is the chemical symbol for Nitrogen?", choices: ["N", "O", "C", "H"], answer: "N", trivia: "Nitrogen is essential for plant growth." },
+            { question: "What is the chemical symbol for Oxygen?", choices: ["O", "N", "C", "H"], answer: "O", trivia: "Oxygen is produced by plants during photosynthesis." },
+            { question: "What is the chemical symbol for Fluorine?", choices: ["F", "Cl", "Br", "I"], answer: "F", trivia: "Fluorine is used in toothpaste to prevent cavities." },
+            { question: "What is the chemical symbol for Neon?", choices: ["Ne", "Ar", "Kr", "Xe"], answer: "Ne", trivia: "Neon is used in high-voltage indicators." },
+            { question: "What is the chemical symbol for Gold?", choices: ["Au", "Ag", "Fe", "Pb"], answer: "Au", trivia: "Gold is used in jewelry and electronics." },
+            { question: "What is the chemical symbol for Silver?", choices: ["Ag", "Au", "Fe", "Cu"], answer: "Ag", trivia: "Silver is used in photography and jewelry." },
+            { question: "What is the chemical symbol for Iron?", choices: ["Fe", "Ir", "Au", "Ag"], answer: "Fe", trivia: "Iron is essential for blood production in humans." },
+            { question: "What is the chemical symbol for Sodium?", choices: ["Na", "K", "Ca", "Mg"], answer: "Na", trivia: "Sodium is important for maintaining fluid balance in the body." },
+            { question: "What is the chemical symbol for Potassium?", choices: ["K", "P", "Na", "Ca"], answer: "K", trivia: "Potassium is vital for heart function." },
+            { question: "What is the chemical symbol for Uranium?", choices: ["U", "Ur", "Un", "Uu"], answer: "U", trivia: "Uranium is used as fuel in nuclear reactors." },
+            { question: "What is the chemical symbol for Mercury?", choices: ["Hg", "Me", "Mn", "Mg"], answer: "Hg", trivia: "Mercury is used in thermometers and barometers." },
+            { question: "What is the chemical symbol for Calcium?", choices: ["Ca", "C", "Cl", "Co"], answer: "Ca", trivia: "Calcium is important for bone health." },
+            { question: "What is the chemical symbol for Barium?", choices: ["Ba", "B", "Bi", "Br"], answer: "Ba", trivia: "Barium is used in medical imaging." },
+            { question: "What is the chemical symbol for Radon?", choices: ["Rn", "Ra", "Rd", "Re"], answer: "Rn", trivia: "Radon is a radioactive gas that can accumulate in homes." },
+            { question: "What is the chemical symbol for Argon?", choices: ["Ar", "Ag", "Au", "Al"], answer: "Ar", trivia: "Argon is used in light bulbs and welding." },
+            { question: "What is the chemical symbol for Zinc?", choices: ["Zn", "Z", "Zr", "Au"], answer: "Zn", trivia: "Zinc is important for immune function." },
+            { question: "What is the chemical symbol for Chlorine?", choices: ["Cl", "C", "Ca", "Co"], answer: "Cl", trivia: "Chlorine is used in swimming pools to kill bacteria." },
+            { question: "What is the chemical symbol for Iodine?", choices: ["I", "Ir", "In", "Id"], answer: "I", trivia: "Iodine is used in antiseptics and disinfectants." },
+            // Add more questions for elements 1 to 118
+            { question: "What is the chemical symbol for Francium?", choices: ["Fr", "F", "Fe", "Fl"], answer: "Fr", trivia: "Francium is highly radioactive and is the least stable of the first 101 elements." },
+            { question: "What is the chemical symbol for Radium?", choices: ["Ra", "Rn", "Re", "Rb"], answer: "Ra", trivia: "Radium is used in cancer treatment." },
+            { question: "What is the chemical symbol for Plutonium?", choices: ["Pu", "Pt", "Pa", "Pb"], answer: "Pu", trivia: "Plutonium is used in nuclear reactors and weapons." },
+            { question: "What is the chemical symbol for Californium?", choices: ["Cf", "C", "Ca", "Cl"], answer: "Cf", trivia: "Californium is used in neutron moisture gauges." },
+            { question: "What is the chemical symbol for Einsteinium?", choices: ["Es", "E", "In", "Ir"], answer: "Es", trivia: "Einsteinium is named after Albert Einstein." },
+            { question: "What is the chemical symbol for Fermium?", choices: ["Fm", "Fe", "F", "Fr"], answer: "Fm", trivia: "Fermium is used in research." },
+            { question: "What is the chemical symbol for Mendelevium?", choices: ["Md", "Me", "Mn", "Mg"], answer: "Md", trivia: "Mendelevium is named after Dmitri Mendeleev." },
+            { question: "What is the chemical symbol for Nobelium?", choices: ["No", "Ne", "Nb", "Nd"], answer: "No", trivia: "Nobelium is named after Alfred Nobel." },
+            { question: "What is the chemical symbol for Lawrencium?", choices: ["Lr", "La", "Li", "Lu"], answer: "Lr", trivia: "Lawrencium is named after Ernest O. Lawrence." },
+            { question: "What is the chemical symbol for Rutherfordium?", choices: ["Rf", "Ru", "Rb", "Re"], answer: "Rf", trivia: "Rutherfordium is named after Ernest Rutherford." },
+            { question: "What is the chemical symbol for Dubnium?", choices: ["Db", "D", "Du", "Db"], answer: "Db", trivia: "Dubnium is named after Dubna, Russia." },
+            { question: "What is the chemical symbol for Seaborgium?", choices: ["Sg", "Se", "Sb", "Sc"], answer: "Sg", trivia: "Seaborgium is named after Glenn T. Seaborg." },
+            { question: "What is the chemical symbol for Bohrium?", choices: ["Bh", "B", "Br", "Bi"], answer: "Bh", trivia: "Bohrium is named after Niels Bohr." },
+            { question: "What is the chemical symbol for Hassium?", choices: ["Hs", "H", "He", "Hg"], answer: "Hs", trivia: "Hassium is named after the German state of Hesse." },
+            { question: "What is the chemical symbol for Meitnerium?", choices: ["Mt", "Me", "Mn", "Mg"], answer: "Mt", trivia: "Meitnerium is named after Lise Meitner." },
+            { question: "What is the chemical symbol for Darmstadtium?", choices: ["Ds", "D", "Db", "Dr"], answer: "Ds", trivia: "Darmstadtium is named after the city of Darmstadt." },
+            { question: "What is the chemical symbol for Roentgenium?", choices: ["Rg", "Ro", "Re", "Rn"], answer: "Rg", trivia: "Roentgenium is named after Wilhelm Röntgen." },
+            { question: "What is the chemical symbol for Copernicium?", choices: ["Cn", "Co", "Cr", "Cu"], answer: "Cn", trivia: "Copernicium is named after Nicolaus Copernicus." },
+            { question: "What is the chemical symbol for Nihonium?", choices: ["Nh", "N", "Ni", "No"], answer: "Nh", trivia: "Nihonium is named after Japan." },
+            { question: "What is the chemical symbol for Flerovium?", choices: ["Fl", "F", "Fe", "Fr"], answer: "Fl", trivia: "Flerovium is named after Georgy Flerov." },
+            { question: "What is the chemical symbol for Moscovium?", choices: ["Mc", "Mo", "M", "Mg"], answer: "Mc", trivia: "Moscovium is named after Moscow." },
+            { question: "What is the chemical symbol for Livermorium?", choices: ["Lv", "Li", "L", "La"], answer: "Lv", trivia: "Livermorium is named after Lawrence Livermore National Laboratory." },
+            { question: "What is the chemical symbol for Tennessine?", choices: ["Ts", "Te", "T", "Ti"], answer: "Ts", trivia: "Tennessine is named after the state of Tennessee." },
+            { question: "What is the chemical symbol for Oganesson?", choices: ["Og", "O", "Os", "Og"], answer: "Og", trivia: "Oganesson is a synthetic element." }
+        ];
+
+        function startQuiz() {
+            console.log("Quiz is starting");
+
+            if (!checkCoins()) {
+                return; // Exit if not enough coins
+            }
+
+            document.getElementById("start-screen").style.display = "none";
+            document.getElementById("quiz-box").style.display = "block";
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestion < periodicQuiz.length) {
+                const q = periodicQuiz[currentQuestion];
+                document.getElementById("question").textContent = q.question;
+                document.getElementById("trivia").textContent = "";
+                const choicesContainer = document.getElementById("choices");
+                choicesContainer.innerHTML = "";
+                q.choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => checkAnswer(button, choice);
+                    choicesContainer.appendChild(button);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function checkAnswer(button, choice) {
+            const q = periodicQuiz[currentQuestion];
+            document.getElementById("trivia").textContent = q.trivia;
+            if (choice === q.answer) {
+                button.classList.add("correct");
+                score++;
+            } else {
+                button.classList.add("wrong");
+                const correctButton = [...document.getElementById("choices").children].find(btn => btn.textContent === q.answer);
+                if (correctButton) correctButton.classList.add("correct-answer");
+            }
+            userCoins = 0; // Reset coins to zero
+            currentQuestion++;
+
+            setTimeout(loadQuestion, 2000);
+        }
+
+        function showResults() {
+            document.getElementById("quiz-box").style.display = "none";
+            document.getElementById("end-screen").style.display = "block";
+            document.getElementById("score").textContent = score + " / 20";
+            document.getElementById("total-questions").textContent = "20";
+
+            // Determine score category
+            let scoreCategory;
+            if (score <= 3) {
+                scoreCategory = "Very Bad";
+            } else if (score <= 7) {
+                scoreCategory = "Bad";
+            } else if (score <= 11) {
+                scoreCategory = "Good";
+            } else {
+                scoreCategory = "Very Good";
+            }
+            document.getElementById("score-category").textContent = "Score Category: " + scoreCategory;
+        }
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            transition: background 0.3s;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .settings-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 100px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+            width: 650px;
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .settings-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .settings-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <h2>Settings</h2><br><br>
+        <button class="settings-btn" onclick="contactUs()">Contact Us</button>
+        <button class="settings-btn" onclick="logout()">Log Out</button>
+        <button class="settings-btn" onclick="back()">Back</button>
+    </div>
+
+    <script>
+        function contactUs() {
+          window.location.href = "contact.html";
+        }
+
+        function logout() {
+            window.location.href = "tablog.html";
+        }
+
+        function back(){
+          window.location.href = "tabtrivia.html";
+        }
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <h1 class="title">Astronomy Wonders</h1>
+        <p class="description">Explore the vastness of space — galaxies, stars, planets, and more!</p>
+        <button class="menu-btn" onclick="goBack()">Back to Menu</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Bang Theory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <h1 class="title">The Big Bang Theory</h1>
+        <p class="description">Discover how the universe began — from a singularity to an ever-expanding cosmos.</p>
+        <button class="menu-btn" onclick="goBack()">Back to Menu</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <h1 class="title">Periodic Table of Elements</h1>
+        <p class="description">Learn about the building blocks of matter — elements that form everything!</p>
+        <button class="menu-btn" onclick="goBack()">Back to Menu</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Table Trivia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('DarkBg.jpg') no-repeat center center/cover;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .login-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            width: 500px;
+        }
+
+        .login-container img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0);
+            color: rgb(255, 255, 255);
+        }
+
+        .login-container input:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgb(255, 255, 255);
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: purple;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .login-container button:hover {
+            background: darkmagenta;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="trivia.png" alt="Table Trivia Logo">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" autocomplete="off">
+        <input type="password" id="password" placeholder="Password" autocomplete="off">
+        <button onclick="validateLogin()">Login</button>
+        <p class="error" id="error-message"></p>
+    </div>
+
+    <script>
+        function validateLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('error-message');
+
+            if (username !== "" && password !== "") {
+                window.location.href = "maintab.html"; 
+            } else {
+                errorMessage.textContent = "Invalid username or password!";
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Settings - Table Trivia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('BGWITHWHITE.png') no-repeat center center/cover;
+        }
+
+        .settings-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            width: 500px;
+        }
+
+        .settings-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .logout-button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .logout-button:hover {
+            background: rgb(63, 6, 92);
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <h2>Thank you, Young Scientist!</h2>
+        <button class="logout-button" onclick="logout()">Log Out</button>
+    </div>
+
+    <script>
+        function logout() {
+            window.location.href = 'tablog.html'; 
+        }
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Trivia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('TABLETRIVIABG.webp') no-repeat center center/cover;
+            opacity: 1;
+            transition: opacity 0.7s ease-out;
+            position: relative;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo, .settings-logo {
+            width: 90px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .background {
+            text-align: center;
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            margin-top: 150px;
+        }
+
+        .menu {
+            background: rgba(128, 0, 128, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .menu.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .menu-btn {
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+            background: linear-gradient(145deg, #ff77ff, #9050d0);
+        }
+
+        .character-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            transition: opacity 0.5s ease-out;
+            text-align: left;
+            flex-direction: row;
+        }
+
+        .character {
+            width: 120px;
+            margin-right: 15px;
+        }
+
+        .dialogue-box {
+            color: white;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .choose-btn {
+            background: linear-gradient(145deg, #ff00ff, #6e0dd0);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 15px;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .choose-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+            background: linear-gradient(145deg, #ff77ff, #9050d0);
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        body.fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="trivia.png" alt="Table Trivia Logo" class="logo">
+        <img src="set.png" alt="Settings Icon" class="settings-logo" onclick="openSettings()">
+    </div>
+    <br><br><br>
+    <div class="background"> 
+        <div class="content"> 
+            <div class="menu" id="menu">
+                <button class="menu-btn" onclick="chooseCategory('astronomy.html')">Astronomy</button>
+                <button class="menu-btn" onclick="chooseCategory('big.html')">Big Bang Theory</button>
+                <button class="menu-btn large" onclick="chooseCategory('period.html')">Elements of the Periodic Table</button>
+            </div>
+        </div>
+
+        <div class="character-box" id="characterBox">
+            <img src="boy.png" alt="Scientist Character" class="character">
+            <div class="dialogue-box">
+                <p>Hello, young scientists! Get ready to uncover the universe’s biggest mysteries — from the explosive birth of the Big Bang to the wonders of Astronomy and the stars beyond. Let’s explore!</p>
+                <button class="choose-btn" onclick="showChoices()">Choose</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showChoices() {
+            const menu = document.getElementById("menu");
+            const characterBox = document.getElementById("characterBox");
+            menu.classList.add("show");
+            characterBox.classList.add("hidden");
+        }
+
+        function chooseCategory(page) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = page;
+            }, 700);
+        }
+
+        function openSettings() {
+            window.location.href = 'settingstab.html';
+        }
+    </script>
+</body>
+</html>
